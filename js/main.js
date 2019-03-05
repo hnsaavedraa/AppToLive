@@ -1,27 +1,27 @@
 var URL1 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-"q=(objectid+%3E0)+AND+(objectid+%3C%3D+88000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+  "q=(objectid+%3E0)+AND+(objectid+%3C%3D+88000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL2 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-"q=(objectid+%3E88000)+AND+(objectid+%3C%3D+188000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+  "q=(objectid+%3E88000)+AND+(objectid+%3C%3D+188000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL3 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-"q=(objectid+%3E188000)+AND+(objectid+%3C%3D+280000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+  "q=(objectid+%3E188000)+AND+(objectid+%3C%3D+280000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL4 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-"q=(objectid+%3E280000)+AND+(objectid+%3C%3D+395000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+  "q=(objectid+%3E280000)+AND+(objectid+%3C%3D+395000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL5 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-"q=(objectid+%3E395000)+AND+(objectid+%3C%3D+439887)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+  "q=(objectid+%3E395000)+AND+(objectid+%3C%3D+439887)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 
 var BARRIOS = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=barrios_prueba&rows=3871"
 
-var SEGURIDAD ="https://www.datos.gov.co/resource/enju-8jvx.json"
+var SEGURIDAD = "https://www.datos.gov.co/resource/enju-8jvx.json"
 
 var COLEGIOS = "https://www.datos.gov.co/resource/qijw-htwa.json"
 
@@ -47,124 +47,140 @@ var greenAreas = [];
 
 var policeStations = [];
 
-var homicides= [];
+var homicides = [];
 
 /*estructuras*/
-var neighborhood={
-  name: barriocomu,
-  coordinate: geo_point_2d,
-  polygons: geo_shape,
-  crimesCount=0
-}
+// var neighborhood={
+//   name: barriocomu,
+//   coordinate: geo_point_2d,
+//   polygons: geo_shape,
+//   crimesCount: 0
+// }
 
-var hospital={
-  name:properties.f2,
-  address:properties.f3,
-  location:geometry.coordinates
-}
+// var hospital={
+//   name:properties.f2,
+//   address:properties.f3,
+//   location:geometry.coordinates
+// }
 
-var cai={
-  name: fields.cainombre,
-  neighborhood: fields.caibarrio,
-  address: fields.caidirecci,
-  phone: fields.caitelefon,
-  location: fields.geo_point_2d
-}
+// var cai={
+//   name: fields.cainombre,
+//   neighborhood: fields.caibarrio,
+//   address: fields.caidirecci,
+//   phone: fields.caitelefon,
+//   location: fields.geo_point_2d
+// }
 
-var school={
-  name: nombreestablecimiento,
-  address: direccion,
-  phone: telefono,
-  levels: niveles,
-  journal: jornada,
-  location: mauroFuncion(address)
-}
+// var school={
+//   name: nombreestablecimiento,
+//   address: direccion,
+//   phone: telefono,
+//   levels: niveles,
+//   journal: jornada,
+//   location: mauroFuncion(address)
+// }
 
-var restaurant={
-  name: fields.razo_soci,
-  address: fields.direcc_com,
-  location: fields.geo_point_2d
-}
+// var house={
+//   owner: nombre,
+//   phone: phone,
+//   floor: piso,
+//   estrato: estrato,
+//   price: precio,
+//   homeType: apartamento_casa_habitacion,
+//   adType: arroVent,
+//   neighborhood:barrio,
+//   address: direccion,
+//   numberOfRooms: rooms,
+//   numberOfBathrooms: bathrooms,
+//   numberOfFloors: nf,
+//   buildingArea: area,
+//   pets: booleanP,
+//   hospitals: [].length,
+//   cais:[].length,
+//   schools:[].length,
+//   restaurants:[].length,
+//   pubs:[].length,
+//   parks: [].length,
+//   details: unString
 
-var pub={
-  name: fields.razo_soci,
-  address: fields.direcc_com,
-  location: fields.geo_point_2d
-}
+// }
 
-var house={
-  owner: nombre,
-  phone: phone,
-  floor: piso,
-  estrato: estrato,
-  price: precio,
-  homeType: apartamento_casa_habitacion,
-  adType: arroVent,
-  neighborhood:barrio,
-  address: direccion,
-  numberOfRooms: rooms,
-  numberOfBathrooms: bathrooms,
-  numberOfFloors: nf,
-  buildingArea: area,
-  pets: booleanP,
-  hospitals: [].length,
-  cais:[].length,
-  schools:[].length,
-  restaurants:[].length,
-  pubs:[].length,
-  parks: [].length,
-  details: unString
+// var park={
+//   name:"",
+//   multipoly:[],
+//   center:[]
+// }
 
-}
+function viewData(URL, text, callback) {
+  var data = $.get(URL, function () {})
+    .done(function () {
+      if (text == "BARRIOS") {
+        /* data.responseJSON.records.forEach(function(element){
+           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
+         })
+         */
+        console.log(data.responseJSON.records);
+        neighborhoods = data.responseJSON.records;
+      } else if (text == "ZONASVERDES") {
+        greenAreas = data.responseJSON.records;
+      } else if (text == "CAI") {
+        policeStations = data.responseJSON.records;
+      } else if (text == "HOMICIDIOS") {
+        homicides = data.responseJSON.records;
+      } else if (text == "SEGURIDAD") {
+        security = data.responseJSON;
+      } else if (text == "COLEGIOS") {
+        schools = data.responseJSON;
+      } else {
+        hospitals = data.responseJSON.features;
+      }
 
-var park={
-  name:"",
-  multipoly:[],
-  center:[]
-}
-
-function viewData(URL, text, callback){
-  var data =$.get(URL, function(){})
-  .done(function(){
-    if(text=="BARRIOS"){
-     /* data.responseJSON.records.forEach(function(element){
-        neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
-      })
-      */
-      console.log(data.responseJSON.records);
-      neighborhoods.push(constructor del element())
-      neighborhoods=data.responseJSON.records;
-    }else if(text=="ZONASVERDES"){
-      greenAreas=data.responseJSON.records;
-    }else if(text=="CAI"){
-      policeStations=data.responseJSON.records;
-    }else if(text=="HOMICIDIOS"){
-      homicides=data.responseJSON.records;
-    }else if(text=="SEGURIDAD"){
-      security=data.responseJSON;
-    }else if(text=="COLEGIOS"){
-      schools=data.responseJSON;
-    }else{
-      hospitals=data.responseJSON.features;
-    }
-
-    callback();
-  })
-  .fail(function(error){
-    console.error(error);
-  })
+      callback();
+    })
+    .fail(function (error) {
+      console.error(error);
+    })
 }
 
 function getDataFromURL(URL, callback) {
   var data = $.get(URL, function () {})
-  .done(function () {
-    commerce.push(data.responseJSON.records);
-    callback();
-  })
-  .fail(function (error) {
-    console.error(error);
-  });
+    .done(function () {
+      commerce.push(data.responseJSON.records);
+      callback();
+    })
+    .fail(function (error) {
+      console.error(error);
+    });
 }
+
+function getRestaurantsAndPubs() {
+  var restaurants = '[\n';
+  var pubs = '[\n';
+
+  commerce.forEach(function (item) {
+    if (item.fields.desc_cod_c == "EXPENDIO A LA MESA DE COMIDAS PREPARADAS") {
+      restaurants = restaurants +
+        '{name: "' + item.fields.razon_soci + '",\n' +
+        'address: "' + item.fields.direcc_com + '",\n' +
+        'location: [' + item.fields.geo_point_2d[0] + ', ' + item.fields.geo_point_2d[1] + ']\n' +
+        '},\n';
+    } else {
+      pubs = pubs +
+        '{name: "' + item.fields.razon_soci + '",\n' +
+        'address: "' + item.fields.direcc_com + '",\n' +
+        'location: [' + item.fields.geo_point_2d[0] + ', ' + item.fields.geo_point_2d[1] + ']\n' +
+        '},\n';
+    }
+  });
+
+  restaurants = restaurants + '];\n';
+  pubs = pubs + '];\n';
+}
+
+console.log("RESTAURANTS");
+console.log(restaurantsData);
+console.log("PUBS");
+console.log(pubsData);
 
 $(document).ready(function () {
 
@@ -451,24 +467,24 @@ $(document).ready(function () {
       if (((panel[0].scrollTop) + 200 >= (mainFilter[0].offsetTop) - 131) &&
         ((panel[0].scrollTop) + 200 < (specialFilter[0].offsetTop) - 131)) {
         selectedTabMain = "main filters";
-      $(".menu_indicator_1").css("margin-left", "130px");
-      $("#button_main_txt_1").css("font-weight", "600");
-      $("#button_main_txt_2").css("font-weight", "400");
-      hideRanking();
-      hideRankingWarning();
+        $(".menu_indicator_1").css("margin-left", "130px");
+        $("#button_main_txt_1").css("font-weight", "600");
+        $("#button_main_txt_2").css("font-weight", "400");
+        hideRanking();
+        hideRankingWarning();
 
-    } else if (((panel[0].scrollTop) + 200 >= (specialFilter[0].offsetTop) - 131)) {
-      selectedTabMain = "special filters";
-      $(".menu_indicator_1").css("margin-left", "232px");
-      $("#button_main_txt_1").css("font-weight", "400");
-      $("#button_main_txt_2").css("font-weight", "600");
-      hideRanking();
-      hideRankingWarning();
+      } else if (((panel[0].scrollTop) + 200 >= (specialFilter[0].offsetTop) - 131)) {
+        selectedTabMain = "special filters";
+        $(".menu_indicator_1").css("margin-left", "232px");
+        $("#button_main_txt_1").css("font-weight", "400");
+        $("#button_main_txt_2").css("font-weight", "600");
+        hideRanking();
+        hideRankingWarning();
 
+      }
     }
-  }
 
-});
+  });
 
   //Main filters buttons action
   $('.location_filter_button').css({
@@ -935,14 +951,15 @@ $(document).ready(function () {
           getDataFromURL(URL5, function () {
             commerce = commerce.flat();
             console.log(commerce);
-            viewData(BARRIOS,"BARRIOS", function(){
-              viewData(SEGURIDAD, "SEGURIDAD", function(){
-                viewData(COLEGIOS, "COLEGIOS", function(){
-                  viewData(HOSPITALES, "HOSPITALES", function(){
-                    viewData(ZONASVERDES, "ZONASVERDES", function(){
-                      viewData(CAI, "CAI", function(){
-                        viewData(HOMICIDIOS, "HOMICIDIOS", function(){
-                         // console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
+            viewData(BARRIOS, "BARRIOS", function () {
+              //getRestaurantsAndPubs();
+              viewData(SEGURIDAD, "SEGURIDAD", function () {
+                viewData(COLEGIOS, "COLEGIOS", function () {
+                  viewData(HOSPITALES, "HOSPITALES", function () {
+                    viewData(ZONASVERDES, "ZONASVERDES", function () {
+                      viewData(CAI, "CAI", function () {
+                        viewData(HOMICIDIOS, "HOMICIDIOS", function () {
+                          // console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
                         })
                       })
                     })
