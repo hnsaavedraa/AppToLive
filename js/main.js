@@ -1,35 +1,89 @@
 var URL1 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-  "q=(objectid+%3E0)+AND+(objectid+%3C%3D+88000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+"q=(objectid+%3E0)+AND+(objectid+%3C%3D+88000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL2 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-  "q=(objectid+%3E88000)+AND+(objectid+%3C%3D+188000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+"q=(objectid+%3E88000)+AND+(objectid+%3C%3D+188000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL3 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-  "q=(objectid+%3E188000)+AND+(objectid+%3C%3D+280000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+"q=(objectid+%3E188000)+AND+(objectid+%3C%3D+280000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL4 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-  "q=(objectid+%3E280000)+AND+(objectid+%3C%3D+395000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+"q=(objectid+%3E280000)+AND+(objectid+%3C%3D+395000)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 var URL5 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=establecimientos-comerciales-2016&" +
-  "q=(objectid+%3E395000)+AND+(objectid+%3C%3D+439887)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
-  "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+"q=(objectid+%3E395000)+AND+(objectid+%3C%3D+439887)+AND+((%23exact(desc_cod_c%2C%22EXPENDIO+A+LA+MESA+DE+COMIDAS+PREPARADAS%22))" +
+"+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
+
+
+var BARRIOS = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=barrios_prueba&rows=3871"
+
+var SEGURIDAD ="https://www.datos.gov.co/resource/enju-8jvx.json"
+
+var COLEGIOS = "https://www.datos.gov.co/resource/qijw-htwa.json"
+
+var HOSPITALES = "http://bogotaghub-gov-esri-co.opendata.arcgis.com/datasets/52d4d7402ec64e029b46abf2594e3c3a_0.geojson"
+
+var ZONASVERDES = "https://transport.opendatasoft.com/api/records/1.0/search/?dataset=parques-bogota&rows=137"
+
+var CAI = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=cai&rows=10000"
+
+var HOMICIDIOS = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=homicidios-en-bogota-2016&rows=10000"
 
 var commerce = [];
 
+var neighborhoods = [];
+
+var security = [];
+
+var schools = [];
+
+var hospitals = [];
+
+var greenAreas = [];
+
+var policeStations = [];
+
+var homicides= [];
+
+function viewData(URL, text, callback){
+  var data =$.get(URL, function(){})
+  .done(function(){
+    if(text=="BARRIOS"){
+      neighborhoods=data.responseJSON.records;
+    }else if(text=="ZONASVERDES"){
+      greenAreas=data.responseJSON.records;
+    }else if(text=="CAI"){
+      policeStations=data.responseJSON.records;
+    }else if(text=="HOMICIDIOS"){
+      homicides=data.responseJSON.records;
+    }else if(text=="SEGURIDAD"){
+      security=data.responseJSON;
+    }else if(text=="COLEGIOS"){
+      schools=data.responseJSON;
+    }else{
+      hospitals=data.responseJSON.features;
+    }
+
+    callback();
+  })
+  .fail(function(error){
+    console.error(error);
+  })
+}
 
 function getDataFromURL(URL, callback) {
   var data = $.get(URL, function () {})
-    .done(function () {
-      commerce.push(data.responseJSON.records);
-      callback();
-    })
-    .fail(function (error) {
-      console.error(error);
-    });
+  .done(function () {
+    commerce.push(data.responseJSON.records);
+    callback();
+  })
+  .fail(function (error) {
+    console.error(error);
+  });
 }
 
 $(document).ready(function () {
@@ -317,24 +371,24 @@ $(document).ready(function () {
       if (((panel[0].scrollTop) + 200 >= (mainFilter[0].offsetTop) - 131) &&
         ((panel[0].scrollTop) + 200 < (specialFilter[0].offsetTop) - 131)) {
         selectedTabMain = "main filters";
-        $(".menu_indicator_1").css("margin-left", "130px");
-        $("#button_main_txt_1").css("font-weight", "600");
-        $("#button_main_txt_2").css("font-weight", "400");
-        hideRanking();
-        hideRankingWarning();
+      $(".menu_indicator_1").css("margin-left", "130px");
+      $("#button_main_txt_1").css("font-weight", "600");
+      $("#button_main_txt_2").css("font-weight", "400");
+      hideRanking();
+      hideRankingWarning();
 
-      } else if (((panel[0].scrollTop) + 200 >= (specialFilter[0].offsetTop) - 131)) {
-        selectedTabMain = "special filters";
-        $(".menu_indicator_1").css("margin-left", "232px");
-        $("#button_main_txt_1").css("font-weight", "400");
-        $("#button_main_txt_2").css("font-weight", "600");
-        hideRanking();
-        hideRankingWarning();
+    } else if (((panel[0].scrollTop) + 200 >= (specialFilter[0].offsetTop) - 131)) {
+      selectedTabMain = "special filters";
+      $(".menu_indicator_1").css("margin-left", "232px");
+      $("#button_main_txt_1").css("font-weight", "400");
+      $("#button_main_txt_2").css("font-weight", "600");
+      hideRanking();
+      hideRankingWarning();
 
-      }
     }
+  }
 
-  });
+});
 
   //Main filters buttons action
   $('.location_filter_button').css({
@@ -801,10 +855,26 @@ $(document).ready(function () {
           getDataFromURL(URL5, function () {
             commerce = commerce.flat();
             console.log(commerce);
+            viewData(BARRIOS,"BARRIOS", function(){
+              viewData(SEGURIDAD, "SEGURIDAD", function(){
+                viewData(COLEGIOS, "COLEGIOS", function(){
+                  viewData(HOSPITALES, "HOSPITALES", function(){
+                    viewData(ZONASVERDES, "ZONASVERDES", function(){
+                      viewData(CAI, "CAI", function(){
+                        viewData(HOMICIDIOS, "HOMICIDIOS", function(){
+                          console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
+                        })
+                      })
+                    })
+                  })
+                })
+              })
+            })
           });
         });
       });
     });
   });
+
 
 });
