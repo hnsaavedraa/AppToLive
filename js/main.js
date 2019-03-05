@@ -49,10 +49,90 @@ var policeStations = [];
 
 var homicides= [];
 
+/*estructuras*/
+var neighborhood={
+  name: barriocomu,
+  coordinate: geo_point_2d,
+  polygons: geo_shape,
+  crimesCount=0
+}
+
+var hospital={
+  name:properties.f2,
+  address:properties.f3,
+  location:geometry.coordinates
+}
+
+var cai={
+  name: fields.cainombre,
+  neighborhood: fields.caibarrio,
+  address: fields.caidirecci,
+  phone: fields.caitelefon,
+  location: fields.geo_point_2d
+}
+
+var school={
+  name: nombreestablecimiento,
+  address: direccion,
+  phone: telefono,
+  levels: niveles,
+  journal: jornada,
+  location: mauroFuncion(address)
+}
+
+var restaurant={
+  name: fields.razo_soci,
+  address: fields.direcc_com,
+  location: fields.geo_point_2d
+}
+
+var pub={
+  name: fields.razo_soci,
+  address: fields.direcc_com,
+  location: fields.geo_point_2d
+}
+
+var house={
+  owner: nombre,
+  phone: phone,
+  floor: piso,
+  estrato: estrato,
+  price: precio,
+  homeType: apartamento_casa_habitacion,
+  adType: arroVent,
+  neighborhood:barrio,
+  address: direccion,
+  numberOfRooms: rooms,
+  numberOfBathrooms: bathrooms,
+  numberOfFloors: nf,
+  buildingArea: area,
+  pets: booleanP,
+  hospitals: [].length,
+  cais:[].length,
+  schools:[].length,
+  restaurants:[].length,
+  pubs:[].length,
+  parks: [].length,
+  details: unString
+
+}
+
+var park={
+  name:"",
+  multipoly:[],
+  center:[]
+}
+
 function viewData(URL, text, callback){
   var data =$.get(URL, function(){})
   .done(function(){
     if(text=="BARRIOS"){
+     /* data.responseJSON.records.forEach(function(element){
+        neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
+      })
+      */
+      console.log(data.responseJSON.records);
+      neighborhoods.push(constructor del element())
       neighborhoods=data.responseJSON.records;
     }else if(text=="ZONASVERDES"){
       greenAreas=data.responseJSON.records;
@@ -862,7 +942,7 @@ $(document).ready(function () {
                     viewData(ZONASVERDES, "ZONASVERDES", function(){
                       viewData(CAI, "CAI", function(){
                         viewData(HOMICIDIOS, "HOMICIDIOS", function(){
-                          console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
+                         // console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
                         })
                       })
                     })
