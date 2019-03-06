@@ -152,7 +152,122 @@ function getDataFromURL(URL, callback) {
       console.error(error);
     });
 }
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function objToString (obj) {
+  var str = '';
+  for (var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      str += p + ':"' + obj[p] + '",\n';
+    }
+  }
+  return '{'+str+'}';
+}
+function addNeighborhoods(fields){
+  
+  if(fields.barriocomu=="Britalia"){
+  var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.6256414+","+(-74.1743829)+"], crimesCount:"+0+"}"
+  }else if(fields.barriocomu=="Prados de la Calleja"){
+    var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.7096067+","+(-74.0537672)+"], crimesCount:"+0+"}"
+  }else if(fields.barriocomu=="S.C. Brisas Aldea Fontibón"){
+    var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.6900913+","+(-74.1560577)+"], crimesCount:"+0+"}"
+  }else{
+    var neighborhood="{ name: '"+fields.barriocomu+"' , coordinate: ["+fields.geo_point_2d[0]+","+fields.geo_point_2d[1]+"], crimesCount:"+0+"}"
+  }
+  return neighborhood;
+}
+function addHouses(){
 
+  for(var i=0; i<20;i++){
+    var house={
+      owner: "",
+      phone: "",
+      homeType: "",
+      adType: "",
+      floor: "",
+      estrato: "",
+      price: "",
+      neighborhood:"",
+      address: "",
+      coordinates: "",
+      numberOfRooms: "",
+      numberOfBathrooms: "",
+      numberOfFloors: "",
+      buildingArea: "",
+      pets: "",
+
+      hospitals: [],
+      cais:[],
+      schools:[],
+      restaurants:[],
+      pubs:[],
+      parks: [],
+      details:""
+
+    }
+    house.owner=nombres[i];
+    house.phone=telefonos[i];
+    var aleatorio=getRandomInt(0, 3);
+    var temp=htype[aleatorio];
+  //console.log(temp)
+  if(temp=="Habitacion"){
+   house.homeType=temp;
+   house.adType="Arriendo";
+   house.floor=floor[getRandomInt(0, 10)];
+   house.estrato=estratos[getRandomInt(0, 6)];
+   house.price=preciosArriendo[getRandomInt(0, 6)];
+   house.neighborhood=barrio[i];
+   house.address=direccion[i];
+   house.coordinates=coordinates[i];
+   house.numberOfRooms="1";
+   house.numberOfBathrooms=''+getRandomInt(0, 4);
+   house.numberOfFloors='1';
+   house.buildingArea=area[getRandomInt(0, 8)];
+   house.pets=mascotas[getRandomInt(0, 2)];
+
+ }else if(temp=="Casa"){
+  house.homeType=temp;
+  house.adType=type[getRandomInt(0, 2)];
+  house.floor="0";
+  house.estrato=estratos[getRandomInt(0, 6)];
+  if(house.adType=="Arriendo")
+    house.price=preciosArriendo[getRandomInt(0, 6)];
+  else
+    house.price=preciosVenta[getRandomInt(0, 6)];
+  house.neighborhood=barrio[i];
+  house.address=direccion[i];
+  house.coordinates=coordinates[i];
+  house.numberOfRooms=getRandomInt(0, 5);
+  house.numberOfBathrooms=getRandomInt(0, 4);
+  house.numberOfFloors=getRandomInt(0, 5);
+  house.buildingArea=area[getRandomInt(0, 8)];
+  house.pets=mascotas[getRandomInt(0, 2)]
+
+}else if(temp=="Apartamento"){
+  house.homeType=temp;
+  house.adType=type[getRandomInt(0, 2)];
+  house.floor=floor[getRandomInt(0, 10)]
+  house.estrato=estratos[getRandomInt(0, 6)];
+  if(house.adType=="Arriendo")
+    house.price=preciosArriendo[getRandomInt(0, 6)];
+  else
+    house.price=preciosVenta[getRandomInt(0, 6)];
+  house.neighborhood=barrio[i];
+  house.address=direccion[i];
+  house.coordinates=coordinates[i];
+  house.numberOfRooms=getRandomInt(0, 5);
+  house.numberOfBathrooms=getRandomInt(0, 4);
+  house.numberOfFloors=getRandomInt(0, 5);
+  house.buildingArea=area[getRandomInt(0, 8)];
+  house.pets=mascotas[getRandomInt(0, 2)]
+}
+
+miStr+=(objToString(house)+",");
+}
+miStr+="]";
+console.log(miStr);
+}
 var arr = [1, 2, 3];
 console.log('[' + arr.toString() + ']');
 
