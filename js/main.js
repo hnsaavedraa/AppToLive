@@ -153,6 +153,9 @@ function getDataFromURL(URL, callback) {
     });
 }
 
+var arr = [1, 2, 3];
+console.log('[' + arr.toString() + ']');
+
 function getRestaurantsAndPubs() {
   var restaurants = '[\n';
   var pubs = '[\n';
@@ -175,6 +178,11 @@ function getRestaurantsAndPubs() {
 
   restaurants = restaurants + '];\n';
   pubs = pubs + '];\n';
+
+  console.log("RESTAURANTS");
+  console.log(restaurants);
+  console.log("PUBS");
+  console.log(pubs);
 }
 
 console.log("RESTAURANTS");

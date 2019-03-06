@@ -112868,5 +112868,5 @@ var restaurantsData = [
         name: "BARRA DE SUSHI TASHI 2",
         address: "TV 9 A BIS . 132 - 55",
         location: [4.632010606806947, -74.15277002505641]
-    },
+    }
 ];

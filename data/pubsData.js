@@ -103768,5 +103768,5 @@ var pubsData = [
         name: "VIDEO BAR EL GORDO R",
         address: "CR 3 A 69 SUR 16",
         location: [4.5229069147699175, -74.12107118710041]
-    },
+    }
 ];
