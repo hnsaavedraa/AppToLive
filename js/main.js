@@ -152,7 +152,122 @@ function getDataFromURL(URL, callback) {
       console.error(error);
     });
 }
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function objToString (obj) {
+  var str = '';
+  for (var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      str += p + ':"' + obj[p] + '",\n';
+    }
+  }
+  return '{'+str+'}';
+}
+function addNeighborhoods(fields){
 
+  if(fields.barriocomu=="Britalia"){
+  var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.6256414+","+(-74.1743829)+"], crimesCount:"+0+"}"
+  }else if(fields.barriocomu=="Prados de la Calleja"){
+    var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.7096067+","+(-74.0537672)+"], crimesCount:"+0+"}"
+  }else if(fields.barriocomu=="S.C. Brisas Aldea Fontibón"){
+    var neighborhood="{ name: '"+fields.barriocomu+"' ,coordinate: ["+4.6900913+","+(-74.1560577)+"], crimesCount:"+0+"}"
+  }else{
+    var neighborhood="{ name: '"+fields.barriocomu+"' , coordinate: ["+fields.geo_point_2d[0]+","+fields.geo_point_2d[1]+"], crimesCount:"+0+"}"
+  }
+  return neighborhood;
+}
+function addHouses(){
+
+  for(var i=0; i<20;i++){
+    var house={
+      owner: "",
+      phone: "",
+      homeType: "",
+      adType: "",
+      floor: "",
+      estrato: "",
+      price: "",
+      neighborhood:"",
+      address: "",
+      coordinates: "",
+      numberOfRooms: "",
+      numberOfBathrooms: "",
+      numberOfFloors: "",
+      buildingArea: "",
+      pets: "",
+
+      hospitals: [],
+      cais:[],
+      schools:[],
+      restaurants:[],
+      pubs:[],
+      parks: [],
+      details:""
+
+    }
+    house.owner=nombres[i];
+    house.phone=telefonos[i];
+    var aleatorio=getRandomInt(0, 3);
+    var temp=htype[aleatorio];
+  //console.log(temp)
+  if(temp=="Habitacion"){
+   house.homeType=temp;
+   house.adType="Arriendo";
+   house.floor=floor[getRandomInt(0, 10)];
+   house.estrato=estratos[getRandomInt(0, 6)];
+   house.price=preciosArriendo[getRandomInt(0, 6)];
+   house.neighborhood=barrio[i];
+   house.address=direccion[i];
+   house.coordinates=coordinates[i];
+   house.numberOfRooms="1";
+   house.numberOfBathrooms=''+getRandomInt(0, 4);
+   house.numberOfFloors='1';
+   house.buildingArea=area[getRandomInt(0, 8)];
+   house.pets=mascotas[getRandomInt(0, 2)];
+
+ }else if(temp=="Casa"){
+  house.homeType=temp;
+  house.adType=type[getRandomInt(0, 2)];
+  house.floor="0";
+  house.estrato=estratos[getRandomInt(0, 6)];
+  if(house.adType=="Arriendo")
+    house.price=preciosArriendo[getRandomInt(0, 6)];
+  else
+    house.price=preciosVenta[getRandomInt(0, 6)];
+  house.neighborhood=barrio[i];
+  house.address=direccion[i];
+  house.coordinates=coordinates[i];
+  house.numberOfRooms=getRandomInt(0, 5);
+  house.numberOfBathrooms=getRandomInt(0, 4);
+  house.numberOfFloors=getRandomInt(0, 5);
+  house.buildingArea=area[getRandomInt(0, 8)];
+  house.pets=mascotas[getRandomInt(0, 2)]
+
+}else if(temp=="Apartamento"){
+  house.homeType=temp;
+  house.adType=type[getRandomInt(0, 2)];
+  house.floor=floor[getRandomInt(0, 10)]
+  house.estrato=estratos[getRandomInt(0, 6)];
+  if(house.adType=="Arriendo")
+    house.price=preciosArriendo[getRandomInt(0, 6)];
+  else
+    house.price=preciosVenta[getRandomInt(0, 6)];
+  house.neighborhood=barrio[i];
+  house.address=direccion[i];
+  house.coordinates=coordinates[i];
+  house.numberOfRooms=getRandomInt(0, 5);
+  house.numberOfBathrooms=getRandomInt(0, 4);
+  house.numberOfFloors=getRandomInt(0, 5);
+  house.buildingArea=area[getRandomInt(0, 8)];
+  house.pets=mascotas[getRandomInt(0, 2)]
+}
+
+miStr+=(objToString(house)+",");
+}
+miStr+="]";
+console.log(miStr);
+}
 var arr = [1, 2, 3];
 console.log('[' + arr.toString() + ']');
 
@@ -183,14 +298,77 @@ function getRestaurantsAndPubs() {
   console.log(restaurants);
   console.log("PUBS");
   console.log(pubs);
+
 }
 
-console.log("RESTAURANTS");
-console.log(restaurantsData);
-console.log("PUBS");
-console.log(pubsData);
 
-$(document).ready(function () {
+/*var hospital={
+  name:properties.f2,
+  address:properties.f3,
+  location:geometry.coordinates
+}*/
+
+function viewData(URL, text, callback) {
+  var data = $.get(URL, function() {})
+    .done(function() {
+      if (text == "BARRIOS") {
+        /* data.responseJSON.records.forEach(function(element){
+           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
+         })
+         */
+        console.log(data.responseJSON.records);
+        //neighborhoods.push(constructor del element())
+        neighborhoods = data.responseJSON.records;
+      } else if (text == "ZONASVERDES") {
+        greenAreas = data.responseJSON.records;
+      } else if (text == "CAI") {
+        data.responseJSON.records.forEach(function(element) {
+          policeStations.push({
+            name: element.fields.cainombre,
+            neighborhood: element.fields.caibarrio,
+            address: element.fields.caidirecci,
+            phone: element.fields.caitelefon,
+            location: element.fields.geo_point_2d
+          })
+        })
+      } else if (text == "HOMICIDIOS") {
+        homicides = data.responseJSON.records;
+      } else if (text == "SEGURIDAD") {
+        security = data.responseJSON;
+      } else if (text == "COLEGIOS") {
+        schools = data.responseJSON;
+      } else {
+        data.responseJSON.features.forEach(function(element) {
+          hospitals.push({
+            name: element.properties.f2,
+            address: element.properties.f3,
+            location: element.geometry.coordinates
+          })
+          console.log(hospitalsData);
+
+        })
+
+      }
+
+      callback();
+    })
+    .fail(function(error) {
+      console.error(error);
+    })
+}
+
+function getDataFromURL(URL, callback) {
+  var data = $.get(URL, function() {})
+    .done(function() {
+      commerce.push(data.responseJSON.records);
+      callback();
+    })
+    .fail(function(error) {
+      console.error(error);
+    });
+}
+
+$(document).ready(function() {
 
   $("#check_1").prop('checked', true);
   $(".menu_button_1").css("color", "#E53935");
@@ -202,7 +380,7 @@ $(document).ready(function () {
   var infoActivated = false;
   var infoButtonActivated = false;
 
-  $("#info_button").click(function () {
+  $("#info_button").click(function() {
     if (!infoActivated) {
       infoActivated = true;
       infoButtonActivated = true;
@@ -223,12 +401,12 @@ $(document).ready(function () {
   $("#info_button").hover(function () {
     $("#info_button").css("color", "var(--background_color)");
     $("#info_button").css("background-color", "white");
-  }, function () {
+  }, function() {
     $("#info_button").css("color", "white");
     $("#info_button").css("background-color", "var(--background_color)");
   });
 
-  $("#info_button_close").click(function () {
+  $("#info_button_close").click(function() {
     if (infoActivated) {
       infoActivated = false;
       $("#info_button_close").css("color", "white");
@@ -246,7 +424,7 @@ $(document).ready(function () {
   $("#info_button_close").hover(function () {
     $("#info_button_close").css("color", "var(--background_color)");
     $("#info_button_close").css("background-color", "white");
-  }, function () {
+  }, function() {
     $("#info_button_close").css("color", "white");
     $("#info_button_close").css("background-color", "var(--background_color)");
   });
@@ -290,7 +468,7 @@ $(document).ready(function () {
     $(".info_container").css("left", "-16%");
   }
 
-  $("#check_1").change(function () {
+  $("#check_1").change(function() {
     if ($("#check_1").is(":checked")) {
       check1();
     } else {
@@ -341,7 +519,7 @@ $(document).ready(function () {
     $(".info_container").css("left", "-16%");
   }
 
-  $("#check_2").change(function () {
+  $("#check_2").change(function() {
     if (this.checked) {
       check2();
     } else {
@@ -349,17 +527,17 @@ $(document).ready(function () {
     }
   });
 
-  $(".menu_button_1").click(function () {
+  $(".menu_button_1").click(function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_1").hover(function () {
+  $(".menu_button_1").hover(function() {
     $(".button_1_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".button_1_txt").click(function () {
+  $(".button_1_txt").click(function() {
     if (!$("#check_1").is(":checked")) {
       $(".button_1_txt").css("padding-left", "36px");
       check1();
@@ -369,23 +547,23 @@ $(document).ready(function () {
     }
   });
 
-  $(".button_1_txt").hover(function () {
+  $(".button_1_txt").hover(function() {
     $(".button_1_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_2").click(function () {
+  $(".menu_button_2").click(function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_2").hover(function () {
+  $(".menu_button_2").hover(function() {
     $(".button_2_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
-  $(".button_2_txt").click(function () {
+  $(".button_2_txt").click(function() {
     if (!$("#check_2").is(":checked")) {
       $(".button_2_txt").css("padding-left", "36px");
       check2();
@@ -395,9 +573,9 @@ $(document).ready(function () {
     }
   });
 
-  $(".button_2_txt").hover(function () {
+  $(".button_2_txt").hover(function() {
     $(".button_2_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
@@ -440,7 +618,7 @@ $(document).ready(function () {
   var mainFilter4Value = 0;
 
   var locationSliderOutput = document.getElementById("location_slider_output");
-  locationSlider.oninput = function () {
+  locationSlider.oninput = function() {
     if (this.value === '1') {
       locationSliderOutput.innerHTML = 'Baja';
     } else if (this.value === '2') {
@@ -453,7 +631,7 @@ $(document).ready(function () {
 
 
   var safetySliderOutput = document.getElementById("safety_slider_output");
-  safetySlider.oninput = function () {
+  safetySlider.oninput = function() {
     if (this.value === '1') {
       safetySliderOutput.innerHTML = 'Poco seguro';
     } else if (this.value === '2') {
@@ -464,13 +642,13 @@ $(document).ready(function () {
 
   };
 
-  Number.prototype.format = function (n, x) {
+  Number.prototype.format = function(n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
   };
 
   var affordabilitySliderOutput = document.getElementById("affordability_slider_output");
-  affordabilitySlider.oninput = function () {
+  affordabilitySlider.oninput = function() {
     affordabilitySliderOutput.innerHTML = "Menor a " + Number(this.value).format(0).toString() + " COP";
 
   };
@@ -479,7 +657,7 @@ $(document).ready(function () {
   safetySliderOutput.innerHTML = 'Muy seguro';
   affordabilitySliderOutput.innerHTML = "Menor a " + Number(affordabilitySlider.value).format(0).toString() + " COP";
 
-  $("#location_title_conatiner").click(function () {
+  $("#location_title_conatiner").click(function() {
     if (locationButtonActive) {
       locationButtonActive = false;
       $(".location_filter_button").css("background-color", "transparent");
@@ -517,7 +695,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#location_title_conatiner").hover(function () {
+  $("#location_title_conatiner").hover(function() {
     if (!locationButtonActive) {
       $('.location_filter_button').css("height", "100%");
       $("#location_button_icon").css("padding", "18px 18px 18px 18px");
@@ -528,7 +706,7 @@ $(document).ready(function () {
       $("#location_button_icon").removeClass('fas fa-map-marker-alt').addClass('fas fa-times');
       location_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#location_button_icon").css("padding", "18px 22px 18px 22px");
     location_check_message.innerHTML = "";
     if (!locationButtonActive) {
@@ -541,7 +719,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#safety_title_conatiner").click(function () {
+  $("#safety_title_conatiner").click(function() {
     if (safetyButtonActive) {
       safetyButtonActive = false;
       $(".safety_filter_button").css("background-color", "transparent");
@@ -579,7 +757,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#safety_title_conatiner").hover(function () {
+  $("#safety_title_conatiner").hover(function() {
     if (!safetyButtonActive) {
       $('.safety_filter_button').css("height", "100%");
       $("#safety_button_icon").css("padding", "18px 18px 18px 18px");
@@ -590,7 +768,7 @@ $(document).ready(function () {
       $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-times');
       safety_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#safety_button_icon").css("padding", "18px 14px 18px 14px");
     safety_check_message.innerHTML = "";
     if (!safetyButtonActive) {
@@ -603,7 +781,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#affordability_title_conatiner").click(function () {
+  $("#affordability_title_conatiner").click(function() {
     if (affordabilityButtonActive) {
       affordabilityButtonActive = false;
       $(".affordability_filter_button").css("background-color", "transparent");
@@ -641,7 +819,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#affordability_title_conatiner").hover(function () {
+  $("#affordability_title_conatiner").hover(function() {
     if (!affordabilityButtonActive) {
       $('.affordability_filter_button').css("height", "100%");
       $("#affordability_button_icon").css("padding", "18px 18px 18px 19px");
@@ -652,7 +830,7 @@ $(document).ready(function () {
       $("#affordability_button_icon").removeClass('fas fa-hand-holding-usd').addClass('fas fa-times');
       affordability_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#affordability_button_icon").css("padding", "18px 17px 18px 17px");
     affordability_check_message.innerHTML = "";
     if (!affordabilityButtonActive) {
@@ -748,11 +926,11 @@ $(document).ready(function () {
     //Loading end
     $('body').addClass('loaded');
 
-    setTimeout(function () {
+    setTimeout(function() {
       $(".loader").css("display", "none");
     }, 200);
 
-    setTimeout(function () {
+    setTimeout(function() {
       infoActivated = true;
       $("#info_button").css("color", "white");
       $("#info_button").css("background-color", "var(--background_color)");
@@ -760,7 +938,7 @@ $(document).ready(function () {
       $("#info_button").css("opacity", "0");
     }, 800);
 
-    setTimeout(function () {
+    setTimeout(function() {
       if (infoActivated && !infoButtonActivated) {
         infoActivated = false;
         $("#info_button").css("color", "white");
@@ -785,11 +963,11 @@ $(document).ready(function () {
   }
 
   loadEnd();
-  getDataFromURL(URL1, function () {
-    getDataFromURL(URL2, function () {
-      getDataFromURL(URL3, function () {
-        getDataFromURL(URL4, function () {
-          getDataFromURL(URL5, function () {
+  /*getDataFromURL(URL1, function() {
+    getDataFromURL(URL2, function() {
+      getDataFromURL(URL3, function() {
+        getDataFromURL(URL4, function() {
+          getDataFromURL(URL5, function() {
             commerce = commerce.flat();
             console.log(commerce);
             viewData(BARRIOS, "BARRIOS", function () {
@@ -813,6 +991,6 @@ $(document).ready(function () {
       });
     });
   });
-
+*/
 
 });
