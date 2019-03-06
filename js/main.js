@@ -50,74 +50,139 @@ var policeStations = [];
 var homicides = [];
 
 /*estructuras*/
-/*
-var neighborhood={
-  name: barriocomu,
-  coordinate: geo_point_2d,
-  polygons: geo_shape,
-  crimesCount=0
+// var neighborhood={
+//   name: barriocomu,
+//   coordinate: geo_point_2d,
+//   polygons: geo_shape,
+//   crimesCount: 0
+// }
+
+// var hospital={
+//   name:properties.f2,
+//   address:properties.f3,
+//   location:geometry.coordinates
+// }
+
+// var cai={
+//   name: fields.cainombre,
+//   neighborhood: fields.caibarrio,
+//   address: fields.caidirecci,
+//   phone: fields.caitelefon,
+//   location: fields.geo_point_2d
+// }
+
+// var school={
+//   name: nombreestablecimiento,
+//   address: direccion,
+//   phone: telefono,
+//   levels: niveles,
+//   journal: jornada,
+//   location: mauroFuncion(address)
+// }
+
+// var house={
+//   owner: nombre,
+//   phone: phone,
+//   floor: piso,
+//   estrato: estrato,
+//   price: precio,
+//   homeType: apartamento_casa_habitacion,
+//   adType: arroVent,
+//   neighborhood:barrio,
+//   address: direccion,
+//   numberOfRooms: rooms,
+//   numberOfBathrooms: bathrooms,
+//   numberOfFloors: nf,
+//   buildingArea: area,
+//   pets: booleanP,
+//   hospitals: [].length,
+//   cais:[].length,
+//   schools:[].length,
+//   restaurants:[].length,
+//   pubs:[].length,
+//   parks: [].length,
+//   details: unString
+
+// }
+
+// var park={
+//   name:"",
+//   multipoly:[],
+//   center:[]
+// }
+
+function viewData(URL, text, callback) {
+  var data = $.get(URL, function () {})
+    .done(function () {
+      if (text == "BARRIOS") {
+        /* data.responseJSON.records.forEach(function(element){
+           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
+         })
+         */
+        console.log(data.responseJSON.records);
+        neighborhoods = data.responseJSON.records;
+      } else if (text == "ZONASVERDES") {
+        greenAreas = data.responseJSON.records;
+      } else if (text == "CAI") {
+        policeStations = data.responseJSON.records;
+      } else if (text == "HOMICIDIOS") {
+        homicides = data.responseJSON.records;
+      } else if (text == "SEGURIDAD") {
+        security = data.responseJSON;
+      } else if (text == "COLEGIOS") {
+        schools = data.responseJSON;
+      } else {
+        hospitals = data.responseJSON.features;
+      }
+
+      callback();
+    })
+    .fail(function (error) {
+      console.error(error);
+    })
 }
 
-
-
-var cai={
-  name: fields.cainombre,
-  neighborhood: fields.caibarrio,
-  address: fields.caidirecci,
-  phone: fields.caitelefon,
-  location: fields.geo_point_2d
+function getDataFromURL(URL, callback) {
+  var data = $.get(URL, function () {})
+    .done(function () {
+      commerce.push(data.responseJSON.records);
+      callback();
+    })
+    .fail(function (error) {
+      console.error(error);
+    });
 }
 
-var school={
-  name: nombreestablecimiento,
-  address: direccion,
-  phone: telefono,
-  levels: niveles,
-  journal: jornada,
-  location: mauroFuncion(address)
-}
+var arr = [1, 2, 3];
+console.log('[' + arr.toString() + ']');
 
-var restaurant={
-  name: fields.razo_soci,
-  address: fields.direcc_com,
-  location: fields.geo_point_2d
-}
+function getRestaurantsAndPubs() {
+  var restaurants = '[\n';
+  var pubs = '[\n';
 
-var pub={
-  name: fields.razo_soci,
-  address: fields.direcc_com,
-  location: fields.geo_point_2d
-}
+  commerce.forEach(function (item) {
+    if (item.fields.desc_cod_c == "EXPENDIO A LA MESA DE COMIDAS PREPARADAS") {
+      restaurants = restaurants +
+        '{name: "' + item.fields.razon_soci + '",\n' +
+        'address: "' + item.fields.direcc_com + '",\n' +
+        'location: [' + item.fields.geo_point_2d[0] + ', ' + item.fields.geo_point_2d[1] + ']\n' +
+        '},\n';
+    } else {
+      pubs = pubs +
+        '{name: "' + item.fields.razon_soci + '",\n' +
+        'address: "' + item.fields.direcc_com + '",\n' +
+        'location: [' + item.fields.geo_point_2d[0] + ', ' + item.fields.geo_point_2d[1] + ']\n' +
+        '},\n';
+    }
+  });
 
-var house={
-  owner: nombre,
-  phone: phone,
-  floor: piso,
-  estrato: estrato,
-  price: precio,
-  homeType: apartamento_casa_habitacion,
-  adType: arroVent,
-  neighborhood:barrio,
-  address: direccion,
-  numberOfRooms: rooms,
-  numberOfBathrooms: bathrooms,
-  numberOfFloors: nf,
-  buildingArea: area,
-  pets: booleanP,
-  hospitals: [].length,
-  cais:[].length,
-  schools:[].length,
-  restaurants:[].length,
-  pubs:[].length,
-  parks: [].length,
-  details: unString
+  restaurants = restaurants + '];\n';
+  pubs = pubs + '];\n';
 
-}
-
-var park={
-  name:"",
-  multipoly:[],
-  center:[]
+  console.log("RESTAURANTS");
+  console.log(restaurants);
+  console.log("PUBS");
+  console.log(pubs);
 }
 */
 
@@ -955,13 +1020,14 @@ $(document).ready(function() {
           getDataFromURL(URL5, function() {
             commerce = commerce.flat();
             console.log(commerce);
-            viewData(BARRIOS, "BARRIOS", function() {
-              viewData(SEGURIDAD, "SEGURIDAD", function() {
-                viewData(COLEGIOS, "COLEGIOS", function() {
-                  viewData(HOSPITALES, "HOSPITALES", function() {
-                    viewData(ZONASVERDES, "ZONASVERDES", function() {
-                      viewData(CAI, "CAI", function() {
-                        viewData(HOMICIDIOS, "HOMICIDIOS", function() {
+            viewData(BARRIOS, "BARRIOS", function () {
+              //getRestaurantsAndPubs();
+              viewData(SEGURIDAD, "SEGURIDAD", function () {
+                viewData(COLEGIOS, "COLEGIOS", function () {
+                  viewData(HOSPITALES, "HOSPITALES", function () {
+                    viewData(ZONASVERDES, "ZONASVERDES", function () {
+                      viewData(CAI, "CAI", function () {
+                        viewData(HOMICIDIOS, "HOMICIDIOS", function () {
                           // console.log(neighborhoods, greenAreas, policeStations, homicides, security, schools, hospitals);
                         })
                       })
