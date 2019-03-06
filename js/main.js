@@ -184,13 +184,74 @@ function getRestaurantsAndPubs() {
   console.log("PUBS");
   console.log(pubs);
 }
+*/
 
-console.log("RESTAURANTS");
-console.log(restaurantsData);
-console.log("PUBS");
-console.log(pubsData);
+/*var hospital={
+  name:properties.f2,
+  address:properties.f3,
+  location:geometry.coordinates
+}*/
 
-$(document).ready(function () {
+function viewData(URL, text, callback) {
+  var data = $.get(URL, function() {})
+    .done(function() {
+      if (text == "BARRIOS") {
+        /* data.responseJSON.records.forEach(function(element){
+           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
+         })
+         */
+        console.log(data.responseJSON.records);
+        //neighborhoods.push(constructor del element())
+        neighborhoods = data.responseJSON.records;
+      } else if (text == "ZONASVERDES") {
+        greenAreas = data.responseJSON.records;
+      } else if (text == "CAI") {
+        data.responseJSON.records.forEach(function(element) {
+          policeStations.push({
+            name: element.fields.cainombre,
+            neighborhood: element.fields.caibarrio,
+            address: element.fields.caidirecci,
+            phone: element.fields.caitelefon,
+            location: element.fields.geo_point_2d
+          })
+        })
+      } else if (text == "HOMICIDIOS") {
+        homicides = data.responseJSON.records;
+      } else if (text == "SEGURIDAD") {
+        security = data.responseJSON;
+      } else if (text == "COLEGIOS") {
+        schools = data.responseJSON;
+      } else {
+        data.responseJSON.features.forEach(function(element) {
+          hospitals.push({
+            name: element.properties.f2,
+            address: element.properties.f3,
+            location: element.geometry.coordinates
+          })
+
+        })
+
+      }
+
+      callback();
+    })
+    .fail(function(error) {
+      console.error(error);
+    })
+}
+
+function getDataFromURL(URL, callback) {
+  var data = $.get(URL, function() {})
+    .done(function() {
+      commerce.push(data.responseJSON.records);
+      callback();
+    })
+    .fail(function(error) {
+      console.error(error);
+    });
+}
+
+$(document).ready(function() {
 
   $("#check_1").prop('checked', true);
   $(".menu_button_1").css("color", "#E53935");
@@ -202,7 +263,7 @@ $(document).ready(function () {
   var infoActivated = false;
   var infoButtonActivated = false;
 
-  $("#info_button").click(function () {
+  $("#info_button").click(function() {
     if (!infoActivated) {
       infoActivated = true;
       infoButtonActivated = true;
@@ -220,15 +281,15 @@ $(document).ready(function () {
     }
   });
 
-  $("#info_button").hover(function () {
+  $("#info_button").hover(function() {
     $("#info_button").css("color", "#424242");
     $("#info_button").css("background-color", "white");
-  }, function () {
+  }, function() {
     $("#info_button").css("color", "white");
     $("#info_button").css("background-color", "#424242");
   });
 
-  $("#info_button_close").click(function () {
+  $("#info_button_close").click(function() {
     if (infoActivated) {
       infoActivated = false;
       $("#info_button_close").css("color", "white");
@@ -243,10 +304,10 @@ $(document).ready(function () {
     }
   });
 
-  $("#info_button_close").hover(function () {
+  $("#info_button_close").hover(function() {
     $("#info_button_close").css("color", "#424242");
     $("#info_button_close").css("background-color", "white");
-  }, function () {
+  }, function() {
     $("#info_button_close").css("color", "white");
     $("#info_button_close").css("background-color", "#424242");
   });
@@ -290,7 +351,7 @@ $(document).ready(function () {
     $(".info_container").css("left", "-16%");
   }
 
-  $("#check_1").change(function () {
+  $("#check_1").change(function() {
     if ($("#check_1").is(":checked")) {
       check1();
     } else {
@@ -341,7 +402,7 @@ $(document).ready(function () {
     $(".info_container").css("left", "-16%");
   }
 
-  $("#check_2").change(function () {
+  $("#check_2").change(function() {
     if (this.checked) {
       check2();
     } else {
@@ -349,17 +410,17 @@ $(document).ready(function () {
     }
   });
 
-  $(".menu_button_1").click(function () {
+  $(".menu_button_1").click(function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_1").hover(function () {
+  $(".menu_button_1").hover(function() {
     $(".button_1_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".button_1_txt").click(function () {
+  $(".button_1_txt").click(function() {
     if (!$("#check_1").is(":checked")) {
       $(".button_1_txt").css("padding-left", "36px");
       check1();
@@ -369,23 +430,23 @@ $(document).ready(function () {
     }
   });
 
-  $(".button_1_txt").hover(function () {
+  $(".button_1_txt").hover(function() {
     $(".button_1_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_1_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_2").click(function () {
+  $(".menu_button_2").click(function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
-  $(".menu_button_2").hover(function () {
+  $(".menu_button_2").hover(function() {
     $(".button_2_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
-  $(".button_2_txt").click(function () {
+  $(".button_2_txt").click(function() {
     if (!$("#check_2").is(":checked")) {
       $(".button_2_txt").css("padding-left", "36px");
       check2();
@@ -395,9 +456,9 @@ $(document).ready(function () {
     }
   });
 
-  $(".button_2_txt").hover(function () {
+  $(".button_2_txt").hover(function() {
     $(".button_2_txt").css("padding-left", "72px");
-  }, function () {
+  }, function() {
     $(".button_2_txt").css("padding-left", "36px");
   });
 
@@ -405,7 +466,7 @@ $(document).ready(function () {
   var selectedTabMain = "main filters";
   $("#button_main_txt_1").css("font-weight", "600");
 
-  $("#main_filter_button").click(function () {
+  $("#main_filter_button").click(function() {
     if (selectedTabMain != "main filters") {
       selectedTabMain = "main filters";
       scrollToSearch("#main_filters_container");
@@ -416,10 +477,10 @@ $(document).ready(function () {
 
   });
 
-  $("#main_filter_button").hover(function () {
+  $("#main_filter_button").hover(function() {
     $(".menu_indicator_1").css("margin-left", "130px");
 
-  }, function () {
+  }, function() {
     if (selectedTabMain == "main filters") {
       $(".menu_indicator_1").css("margin-left", "130px");
     } else if (selectedTabMain == "special filters") {
@@ -427,7 +488,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_button").click(function () {
+  $("#special_filter_button").click(function() {
     if (selectedTabMain != "special filters") {
       selectedTabMain = "special filters";
       scrollToSearch("#special_filters_container");
@@ -438,9 +499,9 @@ $(document).ready(function () {
 
   });
 
-  $("#special_filter_button").hover(function () {
+  $("#special_filter_button").hover(function() {
     $(".menu_indicator_1").css("margin-left", "230px");
-  }, function () {
+  }, function() {
     if (selectedTabMain == "main filters") {
       $(".menu_indicator_1").css("margin-left", "130px");
     } else if (selectedTabMain == "special filters") {
@@ -459,14 +520,14 @@ $(document).ready(function () {
       $(".left_panel_1").animate({
         scrollTop: top
       }, 460);
-      setTimeout(function () {
+      setTimeout(function() {
         autoScrollSearchPanel = false;
       }, 701);
       return false;
     }
   }
 
-  $(".left_panel_1").scroll(function () {
+  $(".left_panel_1").scroll(function() {
     if (!autoScrollSearchPanel) {
       var panel = $(".left_panel_1");
       var mainFilter = $("#main_filters_container");
@@ -529,7 +590,7 @@ $(document).ready(function () {
   var specialFilter4Value = 0;
 
   var locationSliderOutput = document.getElementById("location_slider_output");
-  locationSlider.oninput = function () {
+  locationSlider.oninput = function() {
     if (this.value === '1') {
       locationSliderOutput.innerHTML = 'Baja';
     } else if (this.value === '2') {
@@ -542,7 +603,7 @@ $(document).ready(function () {
 
 
   var safetySliderOutput = document.getElementById("safety_slider_output");
-  safetySlider.oninput = function () {
+  safetySlider.oninput = function() {
     if (this.value === '1') {
       safetySliderOutput.innerHTML = 'Poco seguro';
     } else if (this.value === '2') {
@@ -553,13 +614,13 @@ $(document).ready(function () {
 
   };
 
-  Number.prototype.format = function (n, x) {
+  Number.prototype.format = function(n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
   };
 
   var affordabilitySliderOutput = document.getElementById("affordability_slider_output");
-  affordabilitySlider.oninput = function () {
+  affordabilitySlider.oninput = function() {
     affordabilitySliderOutput.innerHTML = "Menor a " + Number(this.value).format(0).toString() + " COP";
 
   };
@@ -568,7 +629,7 @@ $(document).ready(function () {
   safetySliderOutput.innerHTML = 'Muy seguro';
   affordabilitySliderOutput.innerHTML = "Menor a " + Number(affordabilitySlider.value).format(0).toString() + " COP";
 
-  $("#location_title_conatiner").click(function () {
+  $("#location_title_conatiner").click(function() {
     if (locationButtonActive) {
       locationButtonActive = false;
       $(".location_filter_button").css("background-color", "transparent");
@@ -606,7 +667,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#location_title_conatiner").hover(function () {
+  $("#location_title_conatiner").hover(function() {
     if (!locationButtonActive) {
       $('.location_filter_button').css("height", "100%");
       $("#location_button_icon").css("padding", "18px 18px 18px 18px");
@@ -617,7 +678,7 @@ $(document).ready(function () {
       $("#location_button_icon").removeClass('fas fa-map-marker-alt').addClass('fas fa-times');
       location_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#location_button_icon").css("padding", "18px 22px 18px 22px");
     location_check_message.innerHTML = "";
     if (!locationButtonActive) {
@@ -630,7 +691,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#safety_title_conatiner").click(function () {
+  $("#safety_title_conatiner").click(function() {
     if (safetyButtonActive) {
       safetyButtonActive = false;
       $(".safety_filter_button").css("background-color", "transparent");
@@ -668,7 +729,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#safety_title_conatiner").hover(function () {
+  $("#safety_title_conatiner").hover(function() {
     if (!safetyButtonActive) {
       $('.safety_filter_button').css("height", "100%");
       $("#safety_button_icon").css("padding", "18px 18px 18px 18px");
@@ -679,7 +740,7 @@ $(document).ready(function () {
       $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-times');
       safety_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#safety_button_icon").css("padding", "18px 14px 18px 14px");
     safety_check_message.innerHTML = "";
     if (!safetyButtonActive) {
@@ -692,7 +753,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#affordability_title_conatiner").click(function () {
+  $("#affordability_title_conatiner").click(function() {
     if (affordabilityButtonActive) {
       affordabilityButtonActive = false;
       $(".affordability_filter_button").css("background-color", "transparent");
@@ -730,7 +791,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#affordability_title_conatiner").hover(function () {
+  $("#affordability_title_conatiner").hover(function() {
     if (!affordabilityButtonActive) {
       $('.affordability_filter_button').css("height", "100%");
       $("#affordability_button_icon").css("padding", "18px 18px 18px 19px");
@@ -741,7 +802,7 @@ $(document).ready(function () {
       $("#affordability_button_icon").removeClass('fas fa-hand-holding-usd').addClass('fas fa-times');
       affordability_check_message.innerHTML = "Desactivar?";
     }
-  }, function () {
+  }, function() {
     $("#affordability_button_icon").css("padding", "18px 17px 18px 17px");
     affordability_check_message.innerHTML = "";
     if (!affordabilityButtonActive) {
@@ -754,7 +815,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_1").click(function () {
+  $("#special_filter_1").click(function() {
     if (specialFilter1Active) {
       specialFilter1Active = false;
       specialFilter1Value = 0;
@@ -783,9 +844,9 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_1").hover(function () {
+  $("#special_filter_1").hover(function() {
     $('#special_filter_1').css("width", "100%");
-  }, function () {
+  }, function() {
     if (!specialFilter1Active) {
       $('#special_filter_1').css("width", "91%");
     } else {
@@ -793,7 +854,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_2").click(function () {
+  $("#special_filter_2").click(function() {
     if (specialFilter2Active) {
       specialFilter2Active = false;
       specialFilter2Value = 0;
@@ -822,9 +883,9 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_2").hover(function () {
+  $("#special_filter_2").hover(function() {
     $('#special_filter_2').css("width", "100%");
-  }, function () {
+  }, function() {
     if (!specialFilter2Active) {
       $('#special_filter_2').css("width", "91%");
     } else {
@@ -832,7 +893,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_3").click(function () {
+  $("#special_filter_3").click(function() {
     if (specialFilter3Active) {
       specialFilter3Active = false;
       specialFilter3Value = 0;
@@ -861,9 +922,9 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_3").hover(function () {
+  $("#special_filter_3").hover(function() {
     $('#special_filter_3').css("width", "100%");
-  }, function () {
+  }, function() {
     if (!specialFilter3Active) {
       $('#special_filter_3').css("width", "91%");
     } else {
@@ -871,7 +932,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_4").click(function () {
+  $("#special_filter_4").click(function() {
     if (specialFilter4Active) {
       specialFilter4Active = false;
       specialFilter4Value = 0;
@@ -900,9 +961,9 @@ $(document).ready(function () {
     }
   });
 
-  $("#special_filter_4").hover(function () {
+  $("#special_filter_4").hover(function() {
     $('#special_filter_4').css("width", "100%");
-  }, function () {
+  }, function() {
     if (!specialFilter4Active) {
       $('#special_filter_4').css("width", "91%");
     } else {
@@ -915,11 +976,11 @@ $(document).ready(function () {
     //Loading end
     $('body').addClass('loaded');
 
-    setTimeout(function () {
+    setTimeout(function() {
       $(".loader").css("display", "none");
     }, 200);
 
-    setTimeout(function () {
+    setTimeout(function() {
       infoActivated = true;
       $("#info_button").css("color", "white");
       $("#info_button").css("background-color", "#424242");
@@ -927,7 +988,7 @@ $(document).ready(function () {
       $("#info_button").css("opacity", "0");
     }, 800);
 
-    setTimeout(function () {
+    setTimeout(function() {
       if (infoActivated && !infoButtonActivated) {
         infoActivated = false;
         $("#info_button").css("color", "white");
@@ -952,11 +1013,11 @@ $(document).ready(function () {
   }
 
   loadEnd();
-  getDataFromURL(URL1, function () {
-    getDataFromURL(URL2, function () {
-      getDataFromURL(URL3, function () {
-        getDataFromURL(URL4, function () {
-          getDataFromURL(URL5, function () {
+  getDataFromURL(URL1, function() {
+    getDataFromURL(URL2, function() {
+      getDataFromURL(URL3, function() {
+        getDataFromURL(URL4, function() {
+          getDataFromURL(URL5, function() {
             commerce = commerce.flat();
             console.log(commerce);
             viewData(BARRIOS, "BARRIOS", function () {
