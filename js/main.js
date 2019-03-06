@@ -183,8 +183,9 @@ function getRestaurantsAndPubs() {
   console.log(restaurants);
   console.log("PUBS");
   console.log(pubs);
+
 }
-*/
+
 
 /*var hospital={
   name:properties.f2,
@@ -228,6 +229,7 @@ function viewData(URL, text, callback) {
             address: element.properties.f3,
             location: element.geometry.coordinates
           })
+          console.log(hospitalsData);
 
         })
 
@@ -1013,7 +1015,7 @@ $(document).ready(function() {
   }
 
   loadEnd();
-  getDataFromURL(URL1, function() {
+  /*getDataFromURL(URL1, function() {
     getDataFromURL(URL2, function() {
       getDataFromURL(URL3, function() {
         getDataFromURL(URL4, function() {
@@ -1041,6 +1043,6 @@ $(document).ready(function() {
       });
     });
   });
-
+*/
 
 });
