@@ -484,7 +484,7 @@ loadedHouses=[
     price: "185000000",
     neighborhood: "LA CABANA",
     address: "Cra. 71 #64-2 ",
-    coordinates: "undefined",
+    coordinates: "[4.675172, -74.100760]",
     numberOfRooms: "2",
     numberOfBathrooms: "1",
     numberOfFloors: "4",

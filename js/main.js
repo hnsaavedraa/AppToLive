@@ -166,6 +166,21 @@ function objToString(obj) {
   }
   return '{' + str + '}';
 }
+function distanceBetweenPoints(p1, p2) {
+  var rad = function (x) {
+    return x * Math.PI / 180;
+  };
+
+  var R = 6371; // Earth’s mean radius in km
+  var dLat = rad(p2[0] - p1[0]);
+  var dLong = rad(p2[1] - p1[1]);
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(p1[0])) * Math.cos(rad(p2[0])) *
+    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d; // returns the distance in meter
+}
 
 function addNeighborhoods(fields) {
 
@@ -273,7 +288,7 @@ function addHouses() {
   console.log(miStr);
 }
 var arr = [1, 2, 3];
-console.log('[' + arr.toString() + ']');
+
 
 function getRestaurantsAndPubs() {
   var restaurants = '[\n';
@@ -359,6 +374,53 @@ function viewData(URL, text, callback) {
     .fail(function (error) {
       console.error(error);
     })
+}
+
+function classifyData(){
+  //console.log(loadedHouses)
+  loadedHouses.forEach(function(element){
+    element.hospitals = []
+    element.cais = []
+    element.schools = []
+    element.restaurants = []
+    element.pubs = []
+    element.parks = []
+    var lat = parseFloat(element.coordinates.substring(1,element.coordinates.search(' ')))
+    var lng = parseFloat(element.coordinates.substring(element.coordinates.search(',')+2,element.coordinates.search(']')))
+    var ar=[lat,lng];
+    hospitalsData.forEach(function(elementH){
+      var arH=[elementH.location[1],elementH.location[0]]
+      if(distanceBetweenPoints(arH,ar)<=1)
+        element.hospitals.push(elementH);
+    })
+    policeStationsData.forEach(function(elementP){
+      if(distanceBetweenPoints(elementP.location,ar)<=1)
+        element.cais.push(elementP);
+    })
+    restaurantsData.forEach(function(elementR){
+      if(distanceBetweenPoints(elementR.location,ar)<=1)
+        element.restaurants.push(elementR);
+    })
+    pubsData.forEach(function(elementPub){
+      if(distanceBetweenPoints(elementPub.location,ar)<=1)
+        element.pubs.push(elementPub);
+    })
+    park.forEach(function(elementPark){
+      if(distanceBetweenPoints(elementPark.center,ar)<=1)
+        element.parks.push(elementPark);
+    })
+    
+    colegiosData.forEach(function(elementC){
+      if(elementC.location){
+        var arC=[elementC.location.lat, elementC.location.lng]
+      if(distanceBetweenPoints(arC,ar)<=1)
+        element.schools.push(elementC);
+      }
+      
+    })
+
+  })
+  console.log(loadedHouses);
 }
 
 function getDataFromURL(URL, callback) {
@@ -1574,6 +1636,7 @@ $(document).ready(function () {
   }
 
   loadEnd();
+  classifyData();
   /*getDataFromURL(URL1, function() {
     getDataFromURL(URL2, function() {
       getDataFromURL(URL3, function() {
