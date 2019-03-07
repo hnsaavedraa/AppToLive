@@ -77,15 +77,15 @@
           <h1 class="main_filter_title"><span class="blue_txt">Buscar</span>&nbsp vivienda para</h1>
           <div id="main_filter_1" class="main_filter_button">
             <div id="main_filter_button_title_1" class="main_filter_button_title_container">
-              <i id="main_filter_1_button_icon" class="fas fa-landmark fa-fw"></i>
-              <h3 class="main_filter_button_tittle">Museums</h3>
+              <i id="main_filter_1_button_icon" class="fas fa-home fa-fw"></i>
+              <h3 class="main_filter_button_tittle">Arriendo</h3>
             </div>
             <i id="check_icon_1" class="fas fa-check"></i>
           </div>
           <div id="main_filter_2" class="main_filter_button">
             <div id="main_filter_button_title_2" class="main_filter_button_title_container">
-              <i id="main_filter_2_button_icon" class="fas fa-wind fa-fw"></i>
-              <h3 class="main_filter_button_tittle">Air quality</h3>
+              <i id="main_filter_2_button_icon" class="fas fa-dollar-sign fa-fw"></i>
+              <h3 class="main_filter_button_tittle">Compra</h3>
             </div>
             <i id="check_icon_2" class="fas fa-check"></i>
           </div>
@@ -97,47 +97,224 @@
             <div class="filters_content">
               <h1 class="filters_title"><span class="violet_txt">Filtrar</span>&nbsp vivienda por</h1>
               <div class="filters_container">
-                <div class="location_filter_button">
-                  <div id="location_title_conatiner" class="button_title_container">
-                    <i id="location_button_icon" class="fas fa-map-marker-alt"></i>
-                    <h6 id="location_button_title" class="button_title">Comercios</h6>
-                    <h6 id="location_check_message" class="check_message"></h6>
-                  </div>
-                  <div class="filters_selector_container">
-                    <h5 id="location_slider_title">Importancia</h5>
-                    <div class="slide_container">
-                      <input type="range" min="1" max="3" value="3" class="slider" id="location_slider"></input>
+                <div class="budget_filter_button">
+                  <div id="budget_title_conatiner" class="button_title_container">
+                    <div id="budget_button_icon_container" class="filters_icon_container">
+                      <i id="budget_button_icon" class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <h6 id="location_slider_output"></h6>
+                    <h6 id="budget_button_title" class="button_title">Presupuesto</h6>
+                    <h6 id="budget_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="budget_slider_title">Presupuesto limite</h5>
+                    <div class="slider_container">
+                      <input type="range" min="200000" max="3000000" value="3000000" step="100000" class="slider" id="budget_slider"></input>
+                    </div>
+                    <h6 id="budget_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="house_type_filter_button">
+                  <div id="house_type_title_conatiner" class="button_title_container">
+                    <div id="house_type_button_icon_container" class="filters_icon_container">
+                      <i id="house_type_button_icon" class="fas fa-home"></i>
+                    </div>
+                    <h6 id="house_type_button_title" class="button_title">Tipo de vivienda</h6>
+                    <h6 id="house_type_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="house_type_options_title">Elige tipo de vivienda</h5>
+                    <div class="house_type_buttons_container">
+                      <div class="house_type_house_button_container">
+                        <div class="house_type_house_button">
+                          <h6>Casa</h6>
+                        </div>
+                      </div>
+                      <div class="house_type_apto_button_container">
+                        <div class="house_type_apto_button">
+                          <h6>Apto.</h6>
+                        </div>
+                      </div>
+                      <div class="house_type_both_button_container">
+                        <div class="house_type_both_button">
+                          <h6>Ambos</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="filters_container">
+                <div class="estratos_filter_button">
+                  <div id="estratos_title_conatiner" class="button_title_container">
+                    <div id="estratos_button_icon_container" class="filters_icon_container">
+                      <i id="estratos_button_icon" class="fas fa-signal"></i>
+                    </div>
+                    <h6 id="estratos_button_title" class="button_title">Estrato</h6>
+                    <h6 id="estratos_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="estratos_slider_title">Selecciona estrato</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="6" value="3" step="1" class="slider" id="estratos_slider"></input>
+                    </div>
+                    <h6 id="estratos_slider_output"></h6>
                   </div>
                 </div>
                 <div class="safety_filter_button">
                   <div id="safety_title_conatiner" class="button_title_container">
-                    <i id="safety_button_icon" class="fas fa-user-shield"></i>
-                    <h6 id="safety_button_title" class="button_title">Seguridad</h6>
+                    <div id="safety_button_icon_container" class="filters_icon_container">
+                      <i id="safety_button_icon" class="fas fa-user-shield"></i>
+                    </div>
+                    <h6 id="safety_button_title" class="button_title">Seguridad en la zona</h6>
                     <h6 id="safety_check_message" class="check_message"></h6>
                   </div>
-                  <div class="filters_selector_container">
-                    <h5 id="safety_slider_title">Nivel de seguridad</h5>
-                    <div class="slide_container">
-                      <input type="range" min="1" max="3" value="3" class="slider" id="safety_slider"></input>
+                  <div class="filters_options_container">
+                    <h5 id="safety_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="safety_slider"></input>
                     </div>
                     <h6 id="safety_slider_output"></h6>
                   </div>
                 </div>
-                <div class="affordability_filter_button">
-                  <div id="affordability_title_conatiner" class="button_title_container">
-                    <i id="affordability_button_icon" class="fas fa-hand-holding-usd"></i>
-                    <h6 id="affordability_button_title" class="button_title">Presupuesto</h6>
-                    <h6 id="affordability_check_message" class="check_message"></h6>
-                  </div>
-                  <div class="filters_selector_container">
-                    <h5 id="affordability_slider_title">Presupuesto limite</h5>
-                    <div class="slide_container">
-                      <input type="range" min="200000" max="3000000" value="3000000" step="100000" class="slider"
-                        id="affordability_slider"></input>
+              </div>
+              <div class="filters_container">
+                <div class="area_filter_button">
+                  <div id="area_title_conatiner" class="button_title_container">
+                    <div id="area_button_icon_container" class="filters_icon_container">
+                      <i id="area_button_icon" class="fas fa-ruler-combined"></i>
                     </div>
-                    <h6 id="affordability_slider_output"></h6>
+                    <h6 id="area_button_title" class="button_title">Area construida</h6>
+                    <h6 id="area_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="area_slider_title">Seleccione un tamaño</h5>
+                    <div class="slider_container">
+                      <input type="range" min="15" max="200" value="90" step="5" class="slider"
+                        id="area_slider"></input>
+                    </div>
+                    <h6 id="area_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="rooms_filter_button">
+                  <div id="rooms_title_conatiner" class="button_title_container">
+                    <div id="rooms_button_icon_container" class="filters_icon_container">
+                      <i id="rooms_button_icon" class="fas fa-bed"></i>
+                    </div>
+                    <h6 id="rooms_button_title" class="button_title">Numero de habitaciones</h6>
+                    <h6 id="rooms_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="rooms_slider_title">Habitaciones</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="7" value="3" step="1" class="slider"
+                        id="rooms_slider"></input>
+                    </div>
+                    <h6 id="rooms_slider_output"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="filters_container">
+                <div class="hospitals_filter_button">
+                  <div id="hospitals_title_conatiner" class="button_title_container">
+                    <div id="hospitals_button_icon_container" class="filters_icon_container">
+                      <i id="hospitals_button_icon" class="fas fa-hospital"></i>
+                    </div>
+                    <h6 id="hospitals_button_title" class="button_title">Hospitales cerca</h6>
+                    <h6 id="hospitals_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="hospitals_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider"
+                        id="hospitals_slider"></input>
+                    </div>
+                    <h6 id="hospitals_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="schools_filter_button">
+                  <div id="schools_title_conatiner" class="button_title_container">
+                    <div id="schools_button_icon_container" class="filters_icon_container">
+                      <i id="schools_button_icon" class="fas fa-school"></i>
+                    </div>
+                    <h6 id="schools_button_title" class="button_title">Colegios cerca</h6>
+                    <h6 id="schools_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="schools_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="schools_slider"></input>
+                    </div>
+                    <h6 id="schools_slider_output"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="filters_container">
+                <div class="restaurants_filter_button">
+                  <div id="restaurants_title_conatiner" class="button_title_container">
+                    <div id="restaurants_button_icon_container" class="filters_icon_container">
+                      <i id="restaurants_button_icon" class="fas fa-utensils"></i>
+                    </div>
+                    <h6 id="restaurants_button_title" class="button_title">Restaurantes cerca</h6>
+                    <h6 id="restaurants_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="restaurants_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="restaurants_slider"></input>
+                    </div>
+                    <h6 id="restaurants_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="pubs_filter_button">
+                  <div id="pubs_title_conatiner" class="button_title_container">
+                    <div id="pubs_button_icon_container" class="filters_icon_container">
+                      <i id="pubs_button_icon" class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h6 id="pubs_button_title" class="button_title">Bares cerca</h6>
+                    <h6 id="pubs_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="pubs_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="pubs_slider"></input>
+                    </div>
+                    <h6 id="pubs_slider_output"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="filters_container" style="margin-bottom: 28px;">
+                <div class="parks_filter_button">
+                  <div id="parks_title_conatiner" class="button_title_container">
+                    <div id="parks_button_icon_container" class="filters_icon_container">
+                      <i id="parks_button_icon" class="fas fa-tree"></i>
+                    </div>
+                    <h6 id="parks_button_title" class="button_title">Parques cerca</h6>
+                    <h6 id="parks_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="parks_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider"
+                        id="parks_slider"></input>
+                    </div>
+                    <h6 id="parks_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="cai_filter_button">
+                  <div id="cai_title_conatiner" class="button_title_container">
+                    <div id="cai_button_icon_container" class="filters_icon_container">
+                      <i id="cai_button_icon" class="fas fa-user-shield"></i>
+                    </div>
+                    <h6 id="cai_button_title" class="button_title">CAI cerca</h6>
+                    <h6 id="cai_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="cai_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="cai_slider"></input>
+                    </div>
+                    <h6 id="cai_slider_output"></h6>
                   </div>
                 </div>
               </div>
@@ -213,6 +390,8 @@
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script type="text/javascript" src="./data/houses.js"></script>
+  <script type="text/javascript" src="./data/crimesData.js"></script>
+  <script type="text/javascript" src="./data/ColegiosJson.js"></script>
   <script type="text/javascript" src="./data/neighborhoods.js"></script>
   <script type="text/javascript" src="./data/restaurantsData.js"></script>
   <script type="text/javascript" src="./data/pubsData.js"></script>
@@ -227,4 +406,5 @@
   </script>
 
 </body>
+
 </html>
