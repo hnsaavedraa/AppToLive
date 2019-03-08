@@ -439,6 +439,13 @@ Number.prototype.format = function (n, x) {
   return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
 
+function filterHouses (activeFiltersList, filtersValueList){
+  console.log("BOOLEANS");
+  console.log(activeFiltersList);
+  console.log("VALUES");
+  console.log(filtersValueList);
+}
+
 $(document).ready(function () {
 
   $("#check_1").prop('checked', true);
@@ -668,6 +675,10 @@ $(document).ready(function () {
     });
   });
 
+
+  var activeFiltersList = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+  var filtersValueList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
   //Main filters buttons action
   var mainFilter1Active = false;
   var mainFilter1Value = 0;
@@ -675,34 +686,51 @@ $(document).ready(function () {
   var mainFilter2Active = false;
   var mainFilter2Value = 0;
 
+  function setMainFiltersParams(){
+    activeFiltersList[0] = mainFilter1Active;
+    filtersValueList[0] = mainFilter1Value;
+    activeFiltersList[1] = mainFilter2Active;
+    filtersValueList[1] = mainFilter2Value;
+  }
+
   //Main filter button 1 (arriendo)  
+  function checkMainFilter1(){
+    mainFilter1Active = true;
+    mainFilter1Value = 1;
+    $('#main_filter_1').css("width", "100%");
+    $('#main_filter_1').css("background-color", "var(--main_color)");
+    $('#main_filter_1').css("color", "white");
+    $('#main_filter_button_title_1').css("left", "0%");
+    $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(0%)");
+    $('#main_filter_1').css("justify-content", "space-between");
+    $('#main_filter_1_button_icon').css("background-color", "white");
+    $('#main_filter_1_button_icon').css("color", "var(--main_color)");
+    $('#check_icon_1').css("display", "inline-block");
+  }
+
+  function uncheckMainFilter1(){
+    mainFilter1Active = false;
+    mainFilter1Value = 0;
+    $('#main_filter_1').css("width", "91%");
+    $('#main_filter_1').css("background-color", "transparent");
+    $('#main_filter_1').css("color", "var(--main_color)");
+    $('#main_filter_button_title_1').css("left", "50%");
+    $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(-50%)");
+    $('#main_filter_1_button_icon').css("background-color", "var(--main_color)");
+    $('#main_filter_1_button_icon').css("color", "var(--background_color)");
+    $('#check_icon_1').css("display", "none");
+  }
+
   $("#main_filter_1").click(function () {
-    if (mainFilter1Active) {
-      mainFilter1Active = false;
-      mainFilter1Value = 0;
-      $('#main_filter_1').css("width", "91%");
-      $('#main_filter_1').css("background-color", "transparent");
-      $('#main_filter_1').css("color", "var(--main_color)");
-      $('#main_filter_button_title_1').css("left", "50%");
-      $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(-50%)");
-      $('#main_filter_1_button_icon').css("background-color", "var(--main_color)");
-      $('#main_filter_1_button_icon').css("color", "var(--background_color)");
-      $('#check_icon_1').css("display", "none");
-
+    if (!mainFilter1Active) {
+      checkMainFilter1();
+      uncheckMainFilter2();
     } else {
-      mainFilter1Active = true;
-      mainFilter1Value = 1;
-      $('#main_filter_1').css("width", "100%");
-      $('#main_filter_1').css("background-color", "var(--main_color)");
-      $('#main_filter_1').css("color", "white");
-      $('#main_filter_button_title_1').css("left", "0%");
-      $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(0%)");
-      $('#main_filter_1').css("justify-content", "space-between");
-      $('#main_filter_1_button_icon').css("background-color", "white");
-      $('#main_filter_1_button_icon').css("color", "var(--main_color)");
-      $('#check_icon_1').css("display", "inline-block");
-
+      uncheckMainFilter1();
     }
+
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#main_filter_1").hover(function () {
@@ -716,33 +744,45 @@ $(document).ready(function () {
   });
 
   //Main filter button 2 (compra)
+
+  function checkMainFilter2(){
+    mainFilter2Active = true;
+    mainFilter2Value = 1;
+    $('#main_filter_2').css("width", "100%");
+    $('#main_filter_2').css("background-color", "var(--main_color)");
+    $('#main_filter_2').css("color", "white");
+    $('#main_filter_button_title_2').css("left", "0%");
+    $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(0%)");
+    $('#main_filter_2').css("justify-content", "space-between");
+    $('#main_filter_2_button_icon').css("background-color", "white");
+    $('#main_filter_2_button_icon').css("color", "var(--main_color)");
+    $('#check_icon_2').css("display", "inline-block");
+  }
+
+  function uncheckMainFilter2(){
+    mainFilter2Active = false;
+    mainFilter2Value = 0;
+    $('#main_filter_2').css("width", "91%");
+    $('#main_filter_2').css("background-color", "transparent");
+    $('#main_filter_2').css("color", "var(--main_color)");
+    $('#main_filter_button_title_2').css("left", "50%");
+    $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(-50%)");
+    $('#main_filter_2_button_icon').css("background-color", "var(--main_color)");
+    $('#main_filter_2_button_icon').css("color", "var(--background_color)");
+    $('#check_icon_2').css("display", "none");
+  }
+
   $("#main_filter_2").click(function () {
-    if (mainFilter2Active) {
-      mainFilter2Active = false;
-      mainFilter2Value = 0;
-      $('#main_filter_2').css("width", "91%");
-      $('#main_filter_2').css("background-color", "transparent");
-      $('#main_filter_2').css("color", "var(--main_color)");
-      $('#main_filter_button_title_2').css("left", "50%");
-      $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(-50%)");
-      $('#main_filter_2_button_icon').css("background-color", "var(--main_color)");
-      $('#main_filter_2_button_icon').css("color", "var(--background_color)");
-      $('#check_icon_2').css("display", "none");
-
+    if (!mainFilter2Active) {
+      checkMainFilter2();
+      uncheckMainFilter1();
     } else {
-      mainFilter2Active = true;
-      mainFilter2Value = 1;
-      $('#main_filter_2').css("width", "100%");
-      $('#main_filter_2').css("background-color", "var(--main_color)");
-      $('#main_filter_2').css("color", "white");
-      $('#main_filter_button_title_2').css("left", "0%");
-      $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(0%)");
-      $('#main_filter_2').css("justify-content", "space-between");
-      $('#main_filter_2_button_icon').css("background-color", "white");
-      $('#main_filter_2_button_icon').css("color", "var(--main_color)");
-      $('#check_icon_2').css("display", "inline-block");
-
+      uncheckMainFilter2();
     }
+
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);
+
   });
 
   $("#main_filter_2").hover(function () {
@@ -758,6 +798,10 @@ $(document).ready(function () {
 
   //Filters buttons action
 
+  function setHouseFilterParams(index, active, value){
+    activeFiltersList[index] = active;
+    filtersValueList[index] = value;
+  }
   //Budget button
   var budgetButtonActive = false;
   var budgetSlider = document.getElementById("budget_slider");
@@ -765,7 +809,8 @@ $(document).ready(function () {
   var budgetSliderOutput = document.getElementById("budget_slider_output");
   budgetSlider.oninput = function () {
     budgetSliderOutput.innerHTML = "Menor a " + Number(this.value).format(0).toString() + "";
-
+    setHouseFilterParams(2, budgetButtonActive, budgetSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   budgetSliderOutput.innerHTML = "Menor a " + Number(budgetSlider.value).format(0).toString() + "";
@@ -800,6 +845,9 @@ $(document).ready(function () {
       $("#budget_slider_output").css("display", "inline");
 
     }
+
+    setHouseFilterParams(2, budgetButtonActive, budgetSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#budget_title_conatiner").hover(function () {
@@ -822,6 +870,7 @@ $(document).ready(function () {
   //house type button
 
   var houseTypeButtonActive = false;
+  var houseTypeButtonValue = 0;
   var houseTypeButtonHouseActive = false;
   var houseTypeButtonAptoActive = false;
   var houseTypeButtonBothActive = false;
@@ -829,6 +878,7 @@ $(document).ready(function () {
   $("#house_type_title_conatiner").click(function () {
     if (houseTypeButtonActive) {
       houseTypeButtonActive = false;
+      houseTypeButtonValue = 0;
       $(".house_type_filter_button").css("background-color", "transparent");
       $("#house_type_title_conatiner").css("height", "100%");
       $("#house_type_check_message").css("color", "var(--secondary_color)");
@@ -839,6 +889,9 @@ $(document).ready(function () {
       $("#house_type_button_title").css("color", "var(--secondary_color)");
       $("#house_type_options_title").css("display", "none");
       $(".house_type_buttons_container").css("display", "none");
+
+      setHouseFilterParams(3, houseTypeButtonActive, houseTypeButtonValue);
+      filterHouses(activeFiltersList, filtersValueList);
 
     } else {
       houseTypeButtonActive = true;
@@ -853,6 +906,8 @@ $(document).ready(function () {
       $("#house_type_options_title").css("display", "inline");
       $(".house_type_buttons_container").css("display", "flex");
 
+      setHouseFilterParams(3, houseTypeButtonActive, houseTypeButtonValue);
+      filterHouses(activeFiltersList, filtersValueList);
     }
   });
 
@@ -913,12 +968,17 @@ $(document).ready(function () {
 
   $(".house_type_house_button").click(function () {
     if (!houseTypeButtonHouseActive) {
+      houseTypeButtonValue = 1;
       checkHouseTypeHouse();
       uncheckHouseTypeApto();
       uncheckHouseTypeBoth();
     } else {
+      houseTypeButtonValue = 0;
       uncheckHouseTypeHouse();
     }
+
+    setHouseFilterParams(3, houseTypeButtonActive, houseTypeButtonValue);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $(".house_type_house_button").hover(function () {
@@ -936,12 +996,17 @@ $(document).ready(function () {
 
   $(".house_type_apto_button").click(function () {
     if (!houseTypeButtonAptoActive) {
+      houseTypeButtonValue = 2;
       checkHouseTypeApto();
       uncheckHouseTypeHouse();
       uncheckHouseTypeBoth();
     } else {
+      houseTypeButtonValue = 0;
       uncheckHouseTypeApto();
     }
+
+    setHouseFilterParams(3, houseTypeButtonActive, houseTypeButtonValue);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $(".house_type_apto_button").hover(function () {
@@ -959,12 +1024,17 @@ $(document).ready(function () {
 
   $(".house_type_both_button").click(function () {
     if (!houseTypeButtonBothActive) {
+      houseTypeButtonValue = 3;
       checkHouseTypeBoth();
       uncheckHouseTypeApto();
       uncheckHouseTypeHouse();
     } else {
+      houseTypeButtonValue = 0;
       uncheckHouseTypeBoth();
     }
+
+    setHouseFilterParams(3, houseTypeButtonActive, houseTypeButtonValue);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $(".house_type_both_button").hover(function () {
@@ -987,7 +1057,8 @@ $(document).ready(function () {
   var estratosSliderOutput = document.getElementById("estratos_slider_output");
   estratosSlider.oninput = function () {
     estratosSliderOutput.innerHTML = "Estrato " + this.value.toString();
-
+    setHouseFilterParams(4, estratosButtonActive, estratosSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   estratosSliderOutput.innerHTML = "Estrato " + estratosSlider.value.toString();
@@ -1020,8 +1091,10 @@ $(document).ready(function () {
       $("#estratos_slider_title").css("display", "inline");
       $("#estratos_slider").css("display", "inline");
       $("#estratos_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(4, estratosButtonActive, estratosSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#estratos_title_conatiner").hover(function () {
@@ -1041,67 +1114,6 @@ $(document).ready(function () {
     }
   });
 
-  // safety button
-  var safetyButtonActive = false;
-  var safetySlider = document.getElementById("safety_slider");
-
-  var safetySliderOutput = document.getElementById("safety_slider_output");
-  safetySlider.oninput = function () {
-    getSliderImportanceTxt(this.value, safetySliderOutput);
-  };
-
-  getSliderImportanceTxt(safetySlider.value, safetySliderOutput);
-
-  $("#safety_title_conatiner").click(function () {
-    if (safetyButtonActive) {
-      safetyButtonActive = false;
-      $(".safety_filter_button").css("background-color", "transparent");
-      $("#safety_title_conatiner").css("height", "100%");
-      $("#safety_check_message").css("color", "var(--secondary_color)");
-      $("#safety_button_icon").removeClass('fas fa-times').addClass('fas fa-user-shield');
-      safety_check_message.innerHTML = "";
-      $("#safety_button_icon_container").css("background-color", "var(--secondary_color)");
-      $("#safety_button_icon").css("color", "var(--background_color)");
-      $("#safety_button_title").css("color", "var(--secondary_color)");
-      $("#safety_slider_title").css("display", "none");
-      $("#safety_slider").css("display", "none");
-      $("#safety_slider_output").css("display", "none");
-
-    } else {
-      safetyButtonActive = true;
-      $(".safety_filter_button").css("background-color", "var(--secondary_color)");
-      $("#safety_title_conatiner").css("height", "46%");
-      $("#safety_check_message").css("color", "white");
-      $("#safety_button_icon").removeClass('fas fa-check').addClass('fas fa-user-shield');
-      safety_check_message.innerHTML = "";
-      $("#safety_button_icon_container").css("background-color", "white");
-      $("#safety_button_icon").css("color", "var(--secondary_color)");
-      $("#safety_button_title").css("color", "white");
-      $("#safety_slider_title").css("display", "inline");
-      $("#safety_slider").css("display", "inline");
-      $("#safety_slider_output").css("display", "inline");
-
-    }
-  });
-
-  $("#safety_title_conatiner").hover(function () {
-    if (!safetyButtonActive) {
-      $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-check');
-      safety_check_message.innerHTML = "Activar?";
-    } else {
-      $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-times');
-      safety_check_message.innerHTML = "Desactivar?";
-    }
-  }, function () {
-    safety_check_message.innerHTML = "";
-    if (!safetyButtonActive) {
-      $("#safety_button_icon").removeClass('fas fa-check').addClass('fas fa-user-shield');
-    } else {
-      $("#safety_button_icon").removeClass('fas fa-times').addClass('fas fa-user-shield');
-    }
-  });
-
-
   // building area button
   var areaButtonActive = false;
   var areaSlider = document.getElementById("area_slider");
@@ -1109,6 +1121,8 @@ $(document).ready(function () {
   var areaSliderOutput = document.getElementById("area_slider_output");
   areaSlider.oninput = function () {
     areaSliderOutput.innerHTML = "Menor a " + this.value.toString() + " m2";
+    setHouseFilterParams(5, areaButtonActive, areaSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   areaSliderOutput.innerHTML = "Menor a " + areaSlider.value.toString() + " m2";
@@ -1141,8 +1155,10 @@ $(document).ready(function () {
       $("#area_slider_title").css("display", "inline");
       $("#area_slider").css("display", "inline");
       $("#area_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(5, areaButtonActive, areaSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#area_title_conatiner").hover(function () {
@@ -1170,6 +1186,8 @@ $(document).ready(function () {
   var roomsSliderOutput = document.getElementById("rooms_slider_output");
   roomsSlider.oninput = function () {
     roomsSliderOutput.innerHTML = this.value.toString() + " habitaciones";
+    setHouseFilterParams(6, roomsButtonActive, roomsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   roomsSliderOutput.innerHTML = roomsSlider.value.toString() + " habitaciones";
@@ -1202,8 +1220,10 @@ $(document).ready(function () {
       $("#rooms_slider_title").css("display", "inline");
       $("#rooms_slider").css("display", "inline");
       $("#rooms_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(6, roomsButtonActive, roomsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#rooms_title_conatiner").hover(function () {
@@ -1233,6 +1253,71 @@ $(document).ready(function () {
     }
   }
 
+  // safety button
+  var safetyButtonActive = false;
+  var safetySlider = document.getElementById("safety_slider");
+
+  var safetySliderOutput = document.getElementById("safety_slider_output");
+  safetySlider.oninput = function () {
+    getSliderImportanceTxt(this.value, safetySliderOutput);
+    setHouseFilterParams(7, safetyButtonActive, safetySlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
+  };
+
+  getSliderImportanceTxt(safetySlider.value, safetySliderOutput);
+
+  $("#safety_title_conatiner").click(function () {
+    if (safetyButtonActive) {
+      safetyButtonActive = false;
+      $(".safety_filter_button").css("background-color", "transparent");
+      $("#safety_title_conatiner").css("height", "100%");
+      $("#safety_check_message").css("color", "var(--secondary_color)");
+      $("#safety_button_icon").removeClass('fas fa-times').addClass('fas fa-user-shield');
+      safety_check_message.innerHTML = "";
+      $("#safety_button_icon_container").css("background-color", "var(--secondary_color)");
+      $("#safety_button_icon").css("color", "var(--background_color)");
+      $("#safety_button_title").css("color", "var(--secondary_color)");
+      $("#safety_slider_title").css("display", "none");
+      $("#safety_slider").css("display", "none");
+      $("#safety_slider_output").css("display", "none");
+
+    } else {
+      safetyButtonActive = true;
+      $(".safety_filter_button").css("background-color", "var(--secondary_color)");
+      $("#safety_title_conatiner").css("height", "46%");
+      $("#safety_check_message").css("color", "white");
+      $("#safety_button_icon").removeClass('fas fa-check').addClass('fas fa-user-shield');
+      safety_check_message.innerHTML = "";
+      $("#safety_button_icon_container").css("background-color", "white");
+      $("#safety_button_icon").css("color", "var(--secondary_color)");
+      $("#safety_button_title").css("color", "white");
+      $("#safety_slider_title").css("display", "inline");
+      $("#safety_slider").css("display", "inline");
+      $("#safety_slider_output").css("display", "inline");
+    }
+
+    setHouseFilterParams(7, safetyButtonActive, safetySlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
+  });
+
+  $("#safety_title_conatiner").hover(function () {
+    if (!safetyButtonActive) {
+      $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-check');
+      safety_check_message.innerHTML = "Activar?";
+    } else {
+      $("#safety_button_icon").removeClass('fas fa-user-shield').addClass('fas fa-times');
+      safety_check_message.innerHTML = "Desactivar?";
+    }
+  }, function () {
+    safety_check_message.innerHTML = "";
+    if (!safetyButtonActive) {
+      $("#safety_button_icon").removeClass('fas fa-check').addClass('fas fa-user-shield');
+    } else {
+      $("#safety_button_icon").removeClass('fas fa-times').addClass('fas fa-user-shield');
+    }
+  });
+
+
   // hospitals button 
   var hospitalsButtonActive = false;
   var hospitalsSlider = document.getElementById("hospitals_slider");
@@ -1240,6 +1325,8 @@ $(document).ready(function () {
   var hospitalsSliderOutput = document.getElementById("hospitals_slider_output");
   hospitalsSlider.oninput = function () {
     getSliderImportanceTxt(this.value, hospitalsSliderOutput);
+    setHouseFilterParams(8, hospitalsButtonActive, hospitalsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(hospitalsSlider.value, hospitalsSliderOutput);
@@ -1272,8 +1359,10 @@ $(document).ready(function () {
       $("#hospitals_slider_title").css("display", "inline");
       $("#hospitals_slider").css("display", "inline");
       $("#hospitals_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(8, hospitalsButtonActive, hospitalsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#hospitals_title_conatiner").hover(function () {
@@ -1300,6 +1389,8 @@ $(document).ready(function () {
   var schoolsSliderOutput = document.getElementById("schools_slider_output");
   schoolsSlider.oninput = function () {
     getSliderImportanceTxt(this.value, schoolsSliderOutput);
+    setHouseFilterParams(9, schoolsButtonActive, schoolsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(schoolsSlider.value, schoolsSliderOutput);
@@ -1332,8 +1423,10 @@ $(document).ready(function () {
       $("#schools_slider_title").css("display", "inline");
       $("#schools_slider").css("display", "inline");
       $("#schools_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(9, schoolsButtonActive, schoolsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#schools_title_conatiner").hover(function () {
@@ -1360,6 +1453,8 @@ $(document).ready(function () {
   var restaurantsSliderOutput = document.getElementById("restaurants_slider_output");
   restaurantsSlider.oninput = function () {
     getSliderImportanceTxt(this.value, restaurantsSliderOutput);
+    setHouseFilterParams(10, restaurantsButtonActive, restaurantsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(restaurantsSlider.value, restaurantsSliderOutput);
@@ -1392,8 +1487,10 @@ $(document).ready(function () {
       $("#restaurants_slider_title").css("display", "inline");
       $("#restaurants_slider").css("display", "inline");
       $("#restaurants_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(10, restaurantsButtonActive, restaurantsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#restaurants_title_conatiner").hover(function () {
@@ -1420,6 +1517,8 @@ $(document).ready(function () {
   var pubsSliderOutput = document.getElementById("pubs_slider_output");
   pubsSlider.oninput = function () {
     getSliderImportanceTxt(this.value, pubsSliderOutput);
+    setHouseFilterParams(11, pubsButtonActive, pubsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(pubsSlider.value, pubsSliderOutput);
@@ -1452,8 +1551,10 @@ $(document).ready(function () {
       $("#pubs_slider_title").css("display", "inline");
       $("#pubs_slider").css("display", "inline");
       $("#pubs_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(11, pubsButtonActive, pubsSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#pubs_title_conatiner").hover(function () {
@@ -1481,6 +1582,8 @@ $(document).ready(function () {
   var parksSliderOutput = document.getElementById("parks_slider_output");
   parksSlider.oninput = function () {
     getSliderImportanceTxt(this.value, parksSliderOutput);
+    setHouseFilterParams(12, parksButtonActive, parksSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(parksSlider.value, parksSliderOutput);
@@ -1513,8 +1616,10 @@ $(document).ready(function () {
       $("#parks_slider_title").css("display", "inline");
       $("#parks_slider").css("display", "inline");
       $("#parks_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(12, parksButtonActive, parksSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#parks_title_conatiner").hover(function () {
@@ -1541,6 +1646,8 @@ $(document).ready(function () {
   var caiSliderOutput = document.getElementById("cai_slider_output");
   caiSlider.oninput = function () {
     getSliderImportanceTxt(this.value, caiSliderOutput);
+    setHouseFilterParams(13, caiButtonActive, caiSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   };
 
   getSliderImportanceTxt(caiSlider.value, caiSliderOutput);
@@ -1573,8 +1680,10 @@ $(document).ready(function () {
       $("#cai_slider_title").css("display", "inline");
       $("#cai_slider").css("display", "inline");
       $("#cai_slider_output").css("display", "inline");
-
     }
+
+    setHouseFilterParams(13, caiButtonActive, caiSlider.value);
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#cai_title_conatiner").hover(function () {
