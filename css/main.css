@@ -976,42 +976,12 @@ p .bold {
   font-weight: bold;
 }
 
-.safety_filter_button {
-  height: 100%;
-  background-color: transparent;
-  border-radius: 12px;
-  flex: 1 1 0;
-  margin-left: 9px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: var(--secondary_color);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--secondary_color);
-  transition-property: background-color;
-  transition-duration: 0.3s;
-}
-
-#safety_button_icon {
-  font-size: 30px;
-}
-
-#safety_button_title {
-  font-size: 1.2rem;
-  margin-bottom: 0.1rem;
-  text-align: center;
-  font-weight: bold;
-}
-
 .area_filter_button {
   height: 100%;
   background-color: transparent;
   border-radius: 12px;
   flex: 1 1 0;
-  margin-right: 9px;
+  margin-left: 9px;
   border-style: solid;
   border-width: 2px;
   border-color: var(--secondary_color);
@@ -1041,7 +1011,7 @@ p .bold {
   background-color: transparent;
   border-radius: 12px;
   flex: 1 1 0;
-  margin-left: 9px;
+  margin-right: 9px;
   border-style: solid;
   border-width: 2px;
   border-color: var(--secondary_color);
@@ -1060,6 +1030,36 @@ p .bold {
 }
 
 #rooms_button_title {
+  font-size: 1.2rem;
+  margin-bottom: 0.1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.safety_filter_button {
+  height: 100%;
+  background-color: transparent;
+  border-radius: 12px;
+  flex: 1 1 0;
+  margin-left: 9px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--secondary_color);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary_color);
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+#safety_button_icon {
+  font-size: 30px;
+}
+
+#safety_button_title {
   font-size: 1.2rem;
   margin-bottom: 0.1rem;
   text-align: center;
