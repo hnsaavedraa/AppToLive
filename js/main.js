@@ -166,6 +166,7 @@ function objToString(obj) {
   }
   return '{' + str + '}';
 }
+
 function distanceBetweenPoints(p1, p2) {
   var rad = function (x) {
     return x * Math.PI / 180;
@@ -376,47 +377,47 @@ function viewData(URL, text, callback) {
     })
 }
 
-function classifyData(){
+function classifyData() {
   //console.log(loadedHouses)
-  loadedHouses.forEach(function(element){
+  loadedHouses.forEach(function (element) {
     element.hospitals = []
     element.cais = []
     element.schools = []
     element.restaurants = []
     element.pubs = []
     element.parks = []
-    var lat = parseFloat(element.coordinates.substring(1,element.coordinates.search(' ')))
-    var lng = parseFloat(element.coordinates.substring(element.coordinates.search(',')+2,element.coordinates.search(']')))
-    var ar=[lat,lng];
-    hospitalsData.forEach(function(elementH){
-      var arH=[elementH.location[1],elementH.location[0]]
-      if(distanceBetweenPoints(arH,ar)<=1)
+    var lat = parseFloat(element.coordinates.substring(1, element.coordinates.search(' ')))
+    var lng = parseFloat(element.coordinates.substring(element.coordinates.search(',') + 2, element.coordinates.search(']')))
+    var ar = [lat, lng];
+    hospitalsData.forEach(function (elementH) {
+      var arH = [elementH.location[1], elementH.location[0]]
+      if (distanceBetweenPoints(arH, ar) <= 1)
         element.hospitals.push(elementH);
     })
-    policeStationsData.forEach(function(elementP){
-      if(distanceBetweenPoints(elementP.location,ar)<=1)
+    policeStationsData.forEach(function (elementP) {
+      if (distanceBetweenPoints(elementP.location, ar) <= 1)
         element.cais.push(elementP);
     })
-    restaurantsData.forEach(function(elementR){
-      if(distanceBetweenPoints(elementR.location,ar)<=1)
+    restaurantsData.forEach(function (elementR) {
+      if (distanceBetweenPoints(elementR.location, ar) <= 1)
         element.restaurants.push(elementR);
     })
-    pubsData.forEach(function(elementPub){
-      if(distanceBetweenPoints(elementPub.location,ar)<=1)
+    pubsData.forEach(function (elementPub) {
+      if (distanceBetweenPoints(elementPub.location, ar) <= 1)
         element.pubs.push(elementPub);
     })
-    park.forEach(function(elementPark){
-      if(distanceBetweenPoints(elementPark.center,ar)<=1)
+    park.forEach(function (elementPark) {
+      if (distanceBetweenPoints(elementPark.center, ar) <= 1)
         element.parks.push(elementPark);
     })
-    
-    colegiosData.forEach(function(elementC){
-      if(elementC.location){
-        var arC=[elementC.location.lat, elementC.location.lng]
-      if(distanceBetweenPoints(arC,ar)<=1)
-        element.schools.push(elementC);
+
+    colegiosData.forEach(function (elementC) {
+      if (elementC.location) {
+        var arC = [elementC.location.lat, elementC.location.lng]
+        if (distanceBetweenPoints(arC, ar) <= 1)
+          element.schools.push(elementC);
       }
-      
+
     })
 
   })
@@ -439,7 +440,7 @@ Number.prototype.format = function (n, x) {
   return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
 
-function filterHouses (activeFiltersList, filtersValueList){
+function filterHouses(activeFiltersList, filtersValueList) {
   console.log("BOOLEANS");
   console.log(activeFiltersList);
   console.log("VALUES");
@@ -675,6 +676,22 @@ $(document).ready(function () {
     });
   });
 
+  /* list index
+  [0] -> arriendo
+  [1] -> compra
+  [2] -> presupuesto
+  [3] -> tipo de vivienda
+  [4] -> estrato
+  [5] -> area construida
+  [6] -> numero de habitaciones
+  [7] -> seguridad
+  [8] -> hospitales
+  [9] -> colegios
+  [10] -> restaurantes
+  [11] -> bares
+  [13] -> parques
+  [14] -> cai
+  */
 
   var activeFiltersList = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   var filtersValueList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -686,7 +703,7 @@ $(document).ready(function () {
   var mainFilter2Active = false;
   var mainFilter2Value = 0;
 
-  function setMainFiltersParams(){
+  function setMainFiltersParams() {
     activeFiltersList[0] = mainFilter1Active;
     filtersValueList[0] = mainFilter1Value;
     activeFiltersList[1] = mainFilter2Active;
@@ -694,7 +711,7 @@ $(document).ready(function () {
   }
 
   //Main filter button 1 (arriendo)  
-  function checkMainFilter1(){
+  function checkMainFilter1() {
     mainFilter1Active = true;
     mainFilter1Value = 1;
     $('#main_filter_1').css("width", "100%");
@@ -708,7 +725,7 @@ $(document).ready(function () {
     $('#check_icon_1').css("display", "inline-block");
   }
 
-  function uncheckMainFilter1(){
+  function uncheckMainFilter1() {
     mainFilter1Active = false;
     mainFilter1Value = 0;
     $('#main_filter_1').css("width", "91%");
@@ -745,7 +762,7 @@ $(document).ready(function () {
 
   //Main filter button 2 (compra)
 
-  function checkMainFilter2(){
+  function checkMainFilter2() {
     mainFilter2Active = true;
     mainFilter2Value = 1;
     $('#main_filter_2').css("width", "100%");
@@ -759,7 +776,7 @@ $(document).ready(function () {
     $('#check_icon_2').css("display", "inline-block");
   }
 
-  function uncheckMainFilter2(){
+  function uncheckMainFilter2() {
     mainFilter2Active = false;
     mainFilter2Value = 0;
     $('#main_filter_2').css("width", "91%");
@@ -798,7 +815,7 @@ $(document).ready(function () {
 
   //Filters buttons action
 
-  function setHouseFilterParams(index, active, value){
+  function setHouseFilterParams(index, active, value) {
     activeFiltersList[index] = active;
     filtersValueList[index] = value;
   }
