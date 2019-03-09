@@ -19,6 +19,8 @@ var URL5 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?da
   "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 
+var LOCA="https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=poligonos-localidades&rows=36&facet=Nombre+de+la+localidad";
+
 var BARRIOS = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=barrios_prueba&rows=3871"
 
 var SEGURIDAD = "https://www.datos.gov.co/resource/enju-8jvx.json"
@@ -48,6 +50,8 @@ var greenAreas = [];
 var policeStations = [];
 
 var homicides = [];
+
+var locali=[];
 
 /*estructuras*/
 // var neighborhood={
@@ -123,7 +127,9 @@ function viewData(URL, text, callback) {
         neighborhoods = data.responseJSON.records;
       } else if (text == "ZONASVERDES") {
         greenAreas = data.responseJSON.records;
-      } else if (text == "CAI") {
+      }else if(text=="LOCA"){
+        locali=data.responseJSON; 
+      }else if (text == "CAI") {
         policeStations = data.responseJSON.records;
       } else if (text == "HOMICIDIOS") {
         homicides = data.responseJSON.records;
@@ -135,12 +141,36 @@ function viewData(URL, text, callback) {
         hospitals = data.responseJSON.features;
       }
 
-      callback();
+      loadPolygons();
     })
     .fail(function (error) {
       console.error(error);
     })
 }
+
+function loadPolygons(){
+  
+  var ind=0;
+  locali.records.forEach(function (){
+  if(locali.records[ind].fields.geometry.type == "MultiPolygon"){
+  for(var j=0; j<locali.records[ind].fields.geometry.coordinates[0][0].length; j++){
+  locali.records[ind].fields.geometry.coordinates[0][0][j] = {lat:locali.records[ind].fields.geometry.coordinates[0][0][j][1], lng:locali.records[ind].fields.geometry.coordinates[0][0][j][0] }
+  }
+  var polygon= new google.maps.Polygon({
+    paths:locali.records[ind].fields.geometry.coordinates[0][0],
+    strokeWeight:0.5,
+    strokeColor:"blue",
+    fillColor:"#9C27B0",
+    fillOpacity:0.1,
+    map:map
+  });
+  }
+  ind++;
+  });
+
+
+}
+
 
 function getDataFromURL(URL, callback) {
   var data = $.get(URL, function () {})
@@ -366,7 +396,9 @@ function viewData(URL, text, callback) {
             location: element.fields.geo_point_2d
           })
         })
-      } else if (text == "HOMICIDIOS") {
+      } else if(text=="LOCA"){
+        locali=data.responseJSON; 
+      }else if (text == "HOMICIDIOS") {
         homicides = data.responseJSON.records;
       } else if (text == "SEGURIDAD") {
         security = data.responseJSON;
@@ -380,12 +412,12 @@ function viewData(URL, text, callback) {
             location: element.geometry.coordinates
           })
           console.log(hospitalsData);
-
         })
 
       }
 
-      callback();
+ 
+      loadPolygons();
     })
     .fail(function (error) {
       console.error(error);
@@ -2141,6 +2173,8 @@ $(document).ready(function () {
   }, 5000);
 
   classifyData();
+  viewData(LOCA,"LOCA", function(){
+  })
 
   /*getDataFromURL(URL1, function() {
     getDataFromURL(URL2, function() {
