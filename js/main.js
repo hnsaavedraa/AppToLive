@@ -612,6 +612,13 @@ function filterHouses(activeFiltersList, filtersValueList) {
     filteredHouses.push(house);
   });
 
+  if(!activeFiltersList[0] && !activeFiltersList[1] ){
+    loadedHouses.forEach(function (house, i) {
+      markers[i].marker.setMap(null);
+    })
+  }
+
+
   for (var i = 0; i < 15; i++) {
 
     if (activeFiltersList[i]) {
@@ -2011,11 +2018,9 @@ $(document).ready(function () {
     if (!mainFilter1Active) {
       checkMainFilter1();
       uncheckMainFilter2();
-      setMainFiltersParams();
       setSliderMaxMin(budgetSlider, 400000, 3000000);
       setSliderValue(budgetSlider, 3000000);
       setSliderTxt(budgetSliderOutput, 3000000);
-      filterHouses(activeFiltersList, filtersValueList);
 
     } else {
       uncheckMainFilter1();
@@ -2026,6 +2031,8 @@ $(document).ready(function () {
       }
 
     }
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#main_filter_1").hover(function () {
@@ -2071,12 +2078,9 @@ $(document).ready(function () {
     if (!mainFilter2Active) {
       checkMainFilter2();
       uncheckMainFilter1();
-      setMainFiltersParams();
       setSliderMaxMin(budgetSlider, 95000000, 900000000);
       setSliderValue(budgetSlider, 900000000);
       setSliderTxt(budgetSliderOutput, 900000000);
-      filterHouses(activeFiltersList, filtersValueList);
-
     } else {
       uncheckMainFilter2();
       if (!mainFilter1Active) {
@@ -2086,6 +2090,8 @@ $(document).ready(function () {
       }
 
     }
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);    
   });
 
   $("#main_filter_2").hover(function () {
