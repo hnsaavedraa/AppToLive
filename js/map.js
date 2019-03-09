@@ -80,7 +80,7 @@ function createMarkers() {
   pubsUnCheck();
   parksUnCheck();
   caisUnCheck();
-  
+
   if (currentInfoWindow != null) {
     currentInfoWindow.setMap(null);
     currentInfoWindow = null;
@@ -807,18 +807,18 @@ function getschoolsList(house) {
 
       '<div class="houses_list_data">' +
       '<h3 class="house_list_bold_text">Escolaridad: </h3>' +
-      '<h4 class="house_list_plain_text">' + school.levels + '</h4>' +
+      '<h4 class="house_list_plain_text">' + school.levels.toLowerCase() + '</h4>' +
       '</div>' +
 
       '<div class="houses_list_data">' +
       '<h3 class="house_list_bold_text">Jornada: </h3>' +
-      '<h4 class="house_list_plain_text">' + school.journal.charAt(0).toUpperCase() +school.journal.slice(1).toLowerCase() + '</h4>' +
+      '<h4 class="house_list_plain_text">' + school.journal.toLowerCase() + '</h4>' +
       '</div>' +
 
       '<div class="divider_line"></div>' +
       '</div>';
   });
-// pub.name.charAt(0).toUpperCase() +pub.name.slice(1).toLowerCase() 
+// pub.name.charAt(0).toUpperCase() +pub.name.slice(1).toLowerCase()
 
   return content;
 }
@@ -998,7 +998,7 @@ function getpubsList(house) {
       '<h3 class="house_list_bold_text">Nombre: </h3>' +
       '<h4 class="house_list_plain_text">' + pub.name.charAt(0).toUpperCase() +pub.name.slice(1).toLowerCase() +'</h4>' +
       '</div>' +
-     
+
     '<div class="houses_list_data">' +
     '<h3 class="house_list_bold_text">Direccion: </h3>' +
     '<h4 class="house_list_plain_text">' + pub.address.charAt(0).toUpperCase() + pub.address.slice(1).toLowerCase() +'</h4>' +
