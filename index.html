@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>AppToLive</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    </meta>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </link>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    </link>
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="icon" type="image/png" href="https://icons-for-free.com/free-icons/png/512/227040.png" sizes="16x16">
-    </link>
+  <meta charset="utf-8">
+  <title>AppToLive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </meta>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  </link>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+  </link>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="icon" type="image/png" href="https://icons-for-free.com/free-icons/png/512/227040.png" sizes="16x16">
+  </link>
 </head>
+
 <body>
   <div id="loader-wrapper">
     <div class="loader">
@@ -47,7 +49,7 @@
 
       <div class="nav_bar">
         <div class="nav_button_container">
-          <label class="menu_button_2" for="check_2"><i class="fas fa-chart-bar"></i></label>
+          <label class="menu_button_2" for="check_2"><i class="fas fa-question"></i></label>
           <h6 class="button_2_txt">Acerca de</h6>
         </div>
         <div class="nav_button_container">
@@ -71,155 +73,257 @@
       </div>
 
       <div class="left_panel_1">
-        <div class="title_container">
-          <div class="main_title_container">
-            <div class="top_menu_container">
-              <div class="main_panel_title">
-                <i id="title_icon_1" class="fas fa-filter"></i>
-                <h3 class="title">Buscar</h3>
-              </div>
-              <div class="menu_buttons_container">
-                <div id="main_filter_button" class="menu_button">
-                  <i id="menu_title_icon_filter_main" class="fas fa-award"></i>
-                  <h6 id="button_main_txt_1">Principal</h6>
-                </div>
-                <div id="special_filter_button" class="menu_button">
-                  <i id="menu_title_icon_filter_special" class="fas fa-star"></i>
-                  <h6 id="button_main_txt_2">Special</h6>
-                </div>
-              </div>
+        <div id="main_filter_container" class="content_container">
+          <h1 class="main_filter_title"><span class="blue_txt">Buscar</span>&nbsp vivienda para</h1>
+          <div id="main_filter_1" class="main_filter_button">
+            <div id="main_filter_button_title_1" class="main_filter_button_title_container">
+              <i id="main_filter_1_button_icon" class="fas fa-home fa-fw"></i>
+              <h3 class="main_filter_button_tittle">Arriendo</h3>
             </div>
-            <i id="info_button" class="fas fa-info"></i>
+            <i id="check_icon_1" class="fas fa-check"></i>
           </div>
-          <div class="menu_indicator_container">
-            <div class="menu_indicator_1"></div>
+          <div id="main_filter_2" class="main_filter_button">
+            <div id="main_filter_button_title_2" class="main_filter_button_title_container">
+              <i id="main_filter_2_button_icon" class="fas fa-dollar-sign fa-fw"></i>
+              <h3 class="main_filter_button_tittle">Compra</h3>
+            </div>
+            <i id="check_icon_2" class="fas fa-check"></i>
           </div>
         </div>
-      
-        <div id="main_filters_container" class="content_container" style="background-color: #424242;">
-          <p>For the main filters selection you have to click on the button wich label describes the filter
-            that you want to add in order to calculate the top 10 districts to live in NYC. <br></br>
-            When a filter is activated you can modify the <span class="orange">importance level</span> for the final
-            calculation of the
-            districts score for the ranking.<br></br>
-            Remember that the <span class="orange">importance level</span> means how important is to you an especific
-            property for the ranking.
-            <span class="red">IT DOESN'T MEAN the actual level for that property</span> (for example far, medium and
-            close distance for the
-            closeness level).
-          </p>
-          <div class="main_filters_container">
-            <div class="location_filter_button">
-              <div id="location_title_conatiner" class="button_title_container">
-                <i id="location_button_icon" class="fas fa-map-marker-alt"></i>
-                <h6 id="location_button_title" class="button_title">Comercios</h6>
-                <h6 id="location_check_message" class="check_message"></h6>
-              </div>
-              <div class="filters_selector_container">
-                <h5 id="location_slider_title">Importancia</h5>
-                <div class="slide_container">
-                  <input type="range" min="1" max="3" value="3" class="slider" id="location_slider"></input>
+        <div class="filters_background">
+          <img class="filters_background_image" src="./images/bogota.jpg" alt="bogota backgorund">
+          <div class="filters_background_overlay"></div>
+          <div id="filters_container" class="content_container">
+            <div class="filters_content">
+              <h1 class="filters_title"><span class="violet_txt">Filtrar</span>&nbsp vivienda por</h1>
+              <div class="filters_container">
+                <div class="budget_filter_button">
+                  <div id="budget_title_conatiner" class="button_title_container">
+                    <div id="budget_button_icon_container" class="filters_icon_container">
+                      <i id="budget_button_icon" class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h6 id="budget_button_title" class="button_title">Presupuesto</h6>
+                    <h6 id="budget_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="budget_slider_title">Presupuesto limite</h5>
+                    <div class="slider_container">
+                      <input type="range" min="400000" max="900000000" value="900000000" step="100000" class="slider" id="budget_slider"></input>
+                    </div>
+                    <h6 id="budget_slider_output"></h6>
+                  </div>
                 </div>
-                <h6 id="location_slider_output"></h6>
-              </div>
-            </div>
-            <div class="safety_filter_button">
-              <div id="safety_title_conatiner" class="button_title_container">
-                <i id="safety_button_icon" class="fas fa-user-shield"></i>
-                <h6 id="safety_button_title" class="button_title">Seguridad</h6>
-                <h6 id="safety_check_message" class="check_message"></h6>
-              </div>
-              <div class="filters_selector_container">
-                <h5 id="safety_slider_title">Nivel de seguridad</h5>
-                <div class="slide_container">
-                  <input type="range" min="1" max="3" value="3" class="slider" id="safety_slider"></input>
+                <div class="house_type_filter_button">
+                  <div id="house_type_title_conatiner" class="button_title_container">
+                    <div id="house_type_button_icon_container" class="filters_icon_container">
+                      <i id="house_type_button_icon" class="fas fa-home"></i>
+                    </div>
+                    <h6 id="house_type_button_title" class="button_title">Tipo de vivienda</h6>
+                    <h6 id="house_type_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="house_type_options_title">Elige tipo de vivienda</h5>
+                    <div class="house_type_buttons_container">
+                      <div class="house_type_house_button_container">
+                        <div class="house_type_house_button">
+                          <h6>Casa</h6>
+                        </div>
+                      </div>
+                      <div class="house_type_apto_button_container">
+                        <div class="house_type_apto_button">
+                          <h6>Apto.</h6>
+                        </div>
+                      </div>
+                      <div class="house_type_both_button_container">
+                        <div class="house_type_both_button">
+                          <h6>Cuarto</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h6 id="safety_slider_output"></h6>
+
               </div>
-            </div>
-            <div class="affordability_filter_button">
-              <div id="affordability_title_conatiner" class="button_title_container">
-                <i id="affordability_button_icon" class="fas fa-hand-holding-usd"></i>
-                <h6 id="affordability_button_title" class="button_title">Presupuesto</h6>
-                <h6 id="affordability_check_message" class="check_message"></h6>
-              </div>
-              <div class="filters_selector_container">
-                <h5 id="affordability_slider_title">Presupuesto limite</h5>
-                <div class="slide_container">
-                  <input type="range" min="200000" max="3000000" value="3000000" step="100000" class="slider" id="affordability_slider"></input>
+              <div class="filters_container">
+                <div class="estratos_filter_button">
+                  <div id="estratos_title_conatiner" class="button_title_container">
+                    <div id="estratos_button_icon_container" class="filters_icon_container">
+                      <i id="estratos_button_icon" class="fas fa-signal"></i>
+                    </div>
+                    <h6 id="estratos_button_title" class="button_title">Estrato</h6>
+                    <h6 id="estratos_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="estratos_slider_title">Selecciona estrato</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="6" value="3" step="1" class="slider" id="estratos_slider"></input>
+                    </div>
+                    <h6 id="estratos_slider_output"></h6>
+                  </div>
                 </div>
-                <h6 id="affordability_slider_output"></h6>
+                <div class="area_filter_button">
+                  <div id="area_title_conatiner" class="button_title_container">
+                    <div id="area_button_icon_container" class="filters_icon_container">
+                      <i id="area_button_icon" class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h6 id="area_button_title" class="button_title">Area construida</h6>
+                    <h6 id="area_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="area_slider_title">Seleccione un tamaño</h5>
+                    <div class="slider_container">
+                      <input type="range" min="50" max="200" value="200" step="5" class="slider" id="area_slider"></input>
+                    </div>
+                    <h6 id="area_slider_output"></h6>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="divider_line"></div>
-        </div>
-      
-        <div id="special_filters_container" class="content_container">
-          <p>The <span class="green">special filters</span> are a group of especific characteristics to have in mind in
-            the
-            moment of looking a good place to live<br></br>
-            There are 5 special filters that happen to be really useful when you think about it, these are:
-            the <span class="green">number of museums</span> as points of interest from the district,
-            the <span class="green">air quality</span>(referred to contamination) taken in 2005 - 2013 period,
-            the <span class="green">number art galleries</span> in wich you can spend time and have fun,
-            and finally the <span class="green">number of farmer markets</span> to fill up your kitchen cupboard.
-          </p>
-          <div class="special_filters_container">
-            <div id="special_filter_1" class="special_filter_button">
-              <div id="special_filter_button_title_1" class="special_filter_button_title_container">
-                <i id="special_filter_1_button_icon" class="fas fa-landmark fa-fw"></i>
-                <h3 class="special_filter_button_tittle">Museums</h3>
+              <div class="filters_container">
+                <div class="rooms_filter_button">
+                  <div id="rooms_title_conatiner" class="button_title_container">
+                    <div id="rooms_button_icon_container" class="filters_icon_container">
+                      <i id="rooms_button_icon" class="fas fa-bed"></i>
+                    </div>
+                    <h6 id="rooms_button_title" class="button_title">Numero de habitaciones</h6>
+                    <h6 id="rooms_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="rooms_slider_title">Habitaciones</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="7" value="3" step="1" class="slider"
+                        id="rooms_slider"></input>
+                    </div>
+                    <h6 id="rooms_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="safety_filter_button">
+                  <div id="safety_title_conatiner" class="button_title_container">
+                    <div id="safety_button_icon_container" class="filters_icon_container">
+                      <i id="safety_button_icon" class="fas fa-user-shield"></i>
+                    </div>
+                    <h6 id="safety_button_title" class="button_title">Seguridad en la zona</h6>
+                    <h6 id="safety_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="safety_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="safety_slider"></input>
+                    </div>
+                    <h6 id="safety_slider_output"></h6>
+                  </div>
+                </div>
               </div>
-              <i id="check_icon_1" class="fas fa-check"></i>
-            </div>
-            <div id="special_filter_2" class="special_filter_button">
-              <div id="special_filter_button_title_2" class="special_filter_button_title_container">
-                <i id="special_filter_2_button_icon" class="fas fa-wind fa-fw"></i>
-                <h3 class="special_filter_button_tittle">Air quality</h3>
+              <div class="filters_container">
+                <div class="hospitals_filter_button">
+                  <div id="hospitals_title_conatiner" class="button_title_container">
+                    <div id="hospitals_button_icon_container" class="filters_icon_container">
+                      <i id="hospitals_button_icon" class="fas fa-hospital"></i>
+                    </div>
+                    <h6 id="hospitals_button_title" class="button_title">Hospitales cerca</h6>
+                    <h6 id="hospitals_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="hospitals_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider"
+                        id="hospitals_slider"></input>
+                    </div>
+                    <h6 id="hospitals_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="schools_filter_button">
+                  <div id="schools_title_conatiner" class="button_title_container">
+                    <div id="schools_button_icon_container" class="filters_icon_container">
+                      <i id="schools_button_icon" class="fas fa-school"></i>
+                    </div>
+                    <h6 id="schools_button_title" class="button_title">Colegios cerca</h6>
+                    <h6 id="schools_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="schools_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="schools_slider"></input>
+                    </div>
+                    <h6 id="schools_slider_output"></h6>
+                  </div>
+                </div>
               </div>
-              <i id="check_icon_2" class="fas fa-check"></i>
-            </div>
-            <div id="special_filter_3" class="special_filter_button">
-              <div id="special_filter_button_title_3" class="special_filter_button_title_container">
-                <i id="special_filter_3_button_icon" class="fas fa-paint-brush fa-fw"></i>
-                <h3 class="special_filter_button_tittle">Art galleries</h3>
+              <div class="filters_container">
+                <div class="restaurants_filter_button">
+                  <div id="restaurants_title_conatiner" class="button_title_container">
+                    <div id="restaurants_button_icon_container" class="filters_icon_container">
+                      <i id="restaurants_button_icon" class="fas fa-utensils"></i>
+                    </div>
+                    <h6 id="restaurants_button_title" class="button_title">Restaurantes cerca</h6>
+                    <h6 id="restaurants_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="restaurants_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="restaurants_slider"></input>
+                    </div>
+                    <h6 id="restaurants_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="pubs_filter_button">
+                  <div id="pubs_title_conatiner" class="button_title_container">
+                    <div id="pubs_button_icon_container" class="filters_icon_container">
+                      <i id="pubs_button_icon" class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h6 id="pubs_button_title" class="button_title">Bares cerca</h6>
+                    <h6 id="pubs_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="pubs_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="pubs_slider"></input>
+                    </div>
+                    <h6 id="pubs_slider_output"></h6>
+                  </div>
+                </div>
               </div>
-              <i id="check_icon_3" class="fas fa-check"></i>
-            </div>
-            <div id="special_filter_4" class="special_filter_button">
-              <div id="special_filter_button_title_4" class="special_filter_button_title_container">
-                <i id="special_filter_4_button_icon" class="fas fa-shopping-basket fa-fw"></i>
-                <h3 class="special_filter_button_tittle">Farmers markets</h3>
+              <div class="filters_container" style="margin-bottom: 28px;">
+                <div class="parks_filter_button">
+                  <div id="parks_title_conatiner" class="button_title_container">
+                    <div id="parks_button_icon_container" class="filters_icon_container">
+                      <i id="parks_button_icon" class="fas fa-tree"></i>
+                    </div>
+                    <h6 id="parks_button_title" class="button_title">Parques cerca</h6>
+                    <h6 id="parks_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="parks_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider"
+                        id="parks_slider"></input>
+                    </div>
+                    <h6 id="parks_slider_output"></h6>
+                  </div>
+                </div>
+                <div class="cai_filter_button">
+                  <div id="cai_title_conatiner" class="button_title_container">
+                    <div id="cai_button_icon_container" class="filters_icon_container">
+                      <i id="cai_button_icon" class="fas fa-user-shield"></i>
+                    </div>
+                    <h6 id="cai_button_title" class="button_title">CAI cerca</h6>
+                    <h6 id="cai_check_message" class="check_message"></h6>
+                  </div>
+                  <div class="filters_options_container">
+                    <h5 id="cai_slider_title">¿Que tan importante es?</h5>
+                    <div class="slider_container">
+                      <input type="range" min="1" max="3" value="3" step="1" class="slider" id="cai_slider"></input>
+                    </div>
+                    <h6 id="cai_slider_output"></h6>
+                  </div>
+                </div>
               </div>
-              <i id="check_icon_4" class="fas fa-check"></i>
             </div>
           </div>
         </div>
       </div>
 
       <div class="left_panel_2">
-        <div class="title_container">
-          <div class="main_title_container">
-            <div class="top_menu_container">
-              <div class="main_panel_title">
-                <i id="title_icon_2" class="fas fa-question"></i>
-                <h3 class="title">Acerca de</h3>
-              </div>
-              <div class="menu_buttons_container">
-                <div id="developer_button" class="menu_button">
-                  <i id="menu_title_icon_developer" class="fas fa-user"></i>
-                  <h6 id="button_main_2_txt_2">Equipo</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="menu_indicator_container">
-            <div class="menu_indicator_2"></div>
-          </div>
-        </div>
         <div class="content_container">
-          <div class="about_content_padding"></div>
           <div class="about_developer_container">
             <img src="./images/Logo1.png" alt="Page logo" class="page_logo">
             <h3 class="developer_title_txt">Development team</h3>
@@ -277,19 +381,28 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-  
+
   </div>
 
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./data/houses.js"></script>
+  <script type="text/javascript" src="./data/crimesData.js"></script>
+  <script type="text/javascript" src="./data/ColegiosJson.js"></script>
+  <script type="text/javascript" src="./data/neighborhoods.js"></script>
+  <script type="text/javascript" src="./data/restaurantsData.js"></script>
+  <script type="text/javascript" src="./data/pubsData.js"></script>
+  <script type="text/javascript" src="./data/hospitalsData.js"></script>
+  <script type="text/javascript" src="./data/policeStationsData.js"></script>
+  <script type="text/javascript" src="./data/parks.js"></script>
   <script type="text/javascript" src="./js/map.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
   <!-- Google Maps -->
-  <script async defer
-    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB63_2wCGLLuvMadVGTh8oaaPKIcH67sBs&callback=onGoogleMapResponse&libraries=geometry">
+  <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB63_2wCGLLuvMadVGTh8oaaPKIcH67sBs&callback=onGoogleMapResponse&libraries=geometry">
   </script>
 
 </body>
+
 </html>
