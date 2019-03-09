@@ -380,36 +380,36 @@ function viewData(URL, text, callback) {
 function classifyData() {
   //console.log(loadedHouses)
   loadedHouses.forEach(function (element) {
-    element.hospitals = []
-    element.cais = []
-    element.schools = []
-    element.restaurants = []
-    element.pubs = []
-    element.parks = []
-    var lat = parseFloat(element.coordinates.substring(1, element.coordinates.search(' ')))
-    var lng = parseFloat(element.coordinates.substring(element.coordinates.search(',') + 2, element.coordinates.search(']')))
+    element.hospitals = [];
+    element.cais = [];
+    element.schools = [];
+    element.restaurants = [];
+    element.pubs = [];
+    element.parks = [];
+    var lat = parseFloat(element.coordinates.substring(1, element.coordinates.search(' ')));
+    var lng = parseFloat(element.coordinates.substring(element.coordinates.search(',') + 2, element.coordinates.search(']')));
     var ar = [lat, lng];
     hospitalsData.forEach(function (elementH) {
-      var arH = [elementH.location[1], elementH.location[0]]
+      var arH = [elementH.location[1], elementH.location[0]];
       if (distanceBetweenPoints(arH, ar) <= 1)
         element.hospitals.push(elementH);
-    })
+    });
     policeStationsData.forEach(function (elementP) {
       if (distanceBetweenPoints(elementP.location, ar) <= 1)
         element.cais.push(elementP);
-    })
+    });
     restaurantsData.forEach(function (elementR) {
       if (distanceBetweenPoints(elementR.location, ar) <= 1)
         element.restaurants.push(elementR);
-    })
+    });
     pubsData.forEach(function (elementPub) {
       if (distanceBetweenPoints(elementPub.location, ar) <= 1)
         element.pubs.push(elementPub);
-    })
+    });
     park.forEach(function (elementPark) {
       if (distanceBetweenPoints(elementPark.center, ar) <= 1)
         element.parks.push(elementPark);
-    })
+    });
 
     colegiosData.forEach(function (elementC) {
       if (elementC.location) {
@@ -418,9 +418,9 @@ function classifyData() {
           element.schools.push(elementC);
       }
 
-    })
+    });
 
-  })
+  });
   console.log(loadedHouses);
 }
 
@@ -440,11 +440,137 @@ Number.prototype.format = function (n, x) {
   return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
 
+var filteredHouses = [];
+var nullIndex = [];
+
+function deleteNullHouses() {
+  nullIndex.forEach(function (index, j) {
+    filteredHouses.splice(index - j, 1);
+  });
+}
+
 function filterHouses(activeFiltersList, filtersValueList) {
-  console.log("BOOLEANS");
-  console.log(activeFiltersList);
-  console.log("VALUES");
-  console.log(filtersValueList);
+
+  filteredHouses = [];
+
+  loadedHouses.forEach(function (house) {
+    filteredHouses.push(house);
+  });
+
+  for (var i = 0; i < 15; i++) {
+
+    if (activeFiltersList[i]) {
+
+      nullIndex = [];
+
+      switch (i) {
+        case 0:
+          filteredHouses.forEach(function (house) {
+            if (house.adType != "Arriendo") nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 1:
+          filteredHouses.forEach(function (house) {
+            if (house.adType != "Venta") nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 2:
+          filteredHouses.forEach(function (house) {
+            if (Number(house.price) > Number(filtersValueList[2])) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 3:
+          filteredHouses.forEach(function (house) {
+            if ((filtersValueList[3] == 1) && (house.homeType != "Casa")) nullIndex.push(filteredHouses.indexOf(house));
+            if ((filtersValueList[3] == 2) && (house.homeType != "Apartamento")) nullIndex.push(filteredHouses.indexOf(house));
+            if ((filtersValueList[3] == 3) && (house.homeType != "Habitacion")) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 4:
+          filteredHouses.forEach(function (house) {
+            if (Number(house.estrato) != Number(filtersValueList[4])) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 5:
+          filteredHouses.forEach(function (house) {
+            if (Number(house.buildingArea) > Number(filtersValueList[5])) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 6:
+          filteredHouses.forEach(function (house) {
+            if (Number(house.numberOfRooms) != Number(filtersValueList[6])) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          deleteNullHouses();
+          break;
+
+        case 7:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 8:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 9:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 10:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 11:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 12:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 13:
+          filteredHouses.forEach(function (house) {
+
+          });
+          break;
+
+        case 14:
+          filteredHouses.forEach(function (house) {
+            //if(house.cais.length > 0  && filtersValueList[14] == 1) nullIndex.push(filteredHouses.indexOf(house));
+            //if(house.cais.length != 1 && filtersValueList[14] == 2) nullIndex.push(filteredHouses.indexOf(house));
+            //if(house.cais.length <= 2 && filtersValueList[14] == 3) nullIndex.push(filteredHouses.indexOf(house));
+          });
+          //deleteNullHouses();
+          break;
+      }
+    }
+  }
+
+  console.log("LISTA DE CASAS FILTRADA");
+  console.log(filteredHouses);
 }
 
 $(document).ready(function () {
@@ -696,123 +822,6 @@ $(document).ready(function () {
   var activeFiltersList = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   var filtersValueList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  //Main filters buttons action
-  var mainFilter1Active = false;
-  var mainFilter1Value = 0;
-
-  var mainFilter2Active = false;
-  var mainFilter2Value = 0;
-
-  function setMainFiltersParams() {
-    activeFiltersList[0] = mainFilter1Active;
-    filtersValueList[0] = mainFilter1Value;
-    activeFiltersList[1] = mainFilter2Active;
-    filtersValueList[1] = mainFilter2Value;
-  }
-
-  //Main filter button 1 (arriendo)  
-  function checkMainFilter1() {
-    mainFilter1Active = true;
-    mainFilter1Value = 1;
-    $('#main_filter_1').css("width", "100%");
-    $('#main_filter_1').css("background-color", "var(--main_color)");
-    $('#main_filter_1').css("color", "white");
-    $('#main_filter_button_title_1').css("left", "0%");
-    $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(0%)");
-    $('#main_filter_1').css("justify-content", "space-between");
-    $('#main_filter_1_button_icon').css("background-color", "white");
-    $('#main_filter_1_button_icon').css("color", "var(--main_color)");
-    $('#check_icon_1').css("display", "inline-block");
-  }
-
-  function uncheckMainFilter1() {
-    mainFilter1Active = false;
-    mainFilter1Value = 0;
-    $('#main_filter_1').css("width", "91%");
-    $('#main_filter_1').css("background-color", "transparent");
-    $('#main_filter_1').css("color", "var(--main_color)");
-    $('#main_filter_button_title_1').css("left", "50%");
-    $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(-50%)");
-    $('#main_filter_1_button_icon').css("background-color", "var(--main_color)");
-    $('#main_filter_1_button_icon').css("color", "var(--background_color)");
-    $('#check_icon_1').css("display", "none");
-  }
-
-  $("#main_filter_1").click(function () {
-    if (!mainFilter1Active) {
-      checkMainFilter1();
-      uncheckMainFilter2();
-    } else {
-      uncheckMainFilter1();
-    }
-
-    setMainFiltersParams();
-    filterHouses(activeFiltersList, filtersValueList);
-  });
-
-  $("#main_filter_1").hover(function () {
-    $('#main_filter_1').css("width", "100%");
-  }, function () {
-    if (!mainFilter1Active) {
-      $('#main_filter_1').css("width", "91%");
-    } else {
-      $('#main_filter_1').css("width", "100%");
-    }
-  });
-
-  //Main filter button 2 (compra)
-
-  function checkMainFilter2() {
-    mainFilter2Active = true;
-    mainFilter2Value = 1;
-    $('#main_filter_2').css("width", "100%");
-    $('#main_filter_2').css("background-color", "var(--main_color)");
-    $('#main_filter_2').css("color", "white");
-    $('#main_filter_button_title_2').css("left", "0%");
-    $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(0%)");
-    $('#main_filter_2').css("justify-content", "space-between");
-    $('#main_filter_2_button_icon').css("background-color", "white");
-    $('#main_filter_2_button_icon').css("color", "var(--main_color)");
-    $('#check_icon_2').css("display", "inline-block");
-  }
-
-  function uncheckMainFilter2() {
-    mainFilter2Active = false;
-    mainFilter2Value = 0;
-    $('#main_filter_2').css("width", "91%");
-    $('#main_filter_2').css("background-color", "transparent");
-    $('#main_filter_2').css("color", "var(--main_color)");
-    $('#main_filter_button_title_2').css("left", "50%");
-    $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(-50%)");
-    $('#main_filter_2_button_icon').css("background-color", "var(--main_color)");
-    $('#main_filter_2_button_icon').css("color", "var(--background_color)");
-    $('#check_icon_2').css("display", "none");
-  }
-
-  $("#main_filter_2").click(function () {
-    if (!mainFilter2Active) {
-      checkMainFilter2();
-      uncheckMainFilter1();
-    } else {
-      uncheckMainFilter2();
-    }
-
-    setMainFiltersParams();
-    filterHouses(activeFiltersList, filtersValueList);
-
-  });
-
-  $("#main_filter_2").hover(function () {
-    $('#main_filter_2').css("width", "100%");
-  }, function () {
-    if (!mainFilter2Active) {
-      $('#main_filter_2').css("width", "91%");
-    } else {
-      $('#main_filter_2').css("width", "100%");
-    }
-  });
-
-
   //Filters buttons action
 
   function setHouseFilterParams(index, active, value) {
@@ -829,7 +838,7 @@ $(document).ready(function () {
     setHouseFilterParams(2, budgetButtonActive, budgetSlider.value);
     filterHouses(activeFiltersList, filtersValueList);
   };
-
+  
   budgetSliderOutput.innerHTML = "Menor a " + Number(budgetSlider.value).format(0).toString() + "";
 
   $("#budget_title_conatiner").click(function () {
@@ -1719,6 +1728,129 @@ $(document).ready(function () {
       $("#cai_button_icon").removeClass('fas fa-times').addClass('fas fa-user-shield');
     }
   });
+
+  function setSliderMaxMin(slider, min, max) {
+    slider.min = min;
+    slider.max = max;
+  }
+  
+    //Main filters buttons action
+    var mainFilter1Active = false;
+    var mainFilter1Value = 0;
+
+    var mainFilter2Active = false;
+    var mainFilter2Value = 0;
+
+    function setMainFiltersParams() {
+      activeFiltersList[0] = mainFilter1Active;
+      filtersValueList[0] = mainFilter1Value;
+      activeFiltersList[1] = mainFilter2Active;
+      filtersValueList[1] = mainFilter2Value;
+    }
+
+    //Main filter button 1 (arriendo)  
+    function checkMainFilter1() {
+      mainFilter1Active = true;
+      mainFilter1Value = 1;
+      $('#main_filter_1').css("width", "100%");
+      $('#main_filter_1').css("background-color", "var(--main_color)");
+      $('#main_filter_1').css("color", "white");
+      $('#main_filter_button_title_1').css("left", "0%");
+      $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(0%)");
+      $('#main_filter_1').css("justify-content", "space-between");
+      $('#main_filter_1_button_icon').css("background-color", "white");
+      $('#main_filter_1_button_icon').css("color", "var(--main_color)");
+      $('#check_icon_1').css("display", "inline-block");
+    }
+
+    function uncheckMainFilter1() {
+      mainFilter1Active = false;
+      mainFilter1Value = 0;
+      $('#main_filter_1').css("width", "91%");
+      $('#main_filter_1').css("background-color", "transparent");
+      $('#main_filter_1').css("color", "var(--main_color)");
+      $('#main_filter_button_title_1').css("left", "50%");
+      $('#main_filter_button_title_1').css("transform", "perspective(1px) translateX(-50%)");
+      $('#main_filter_1_button_icon').css("background-color", "var(--main_color)");
+      $('#main_filter_1_button_icon').css("color", "var(--background_color)");
+      $('#check_icon_1').css("display", "none");
+    }
+
+    $("#main_filter_1").click(function () {
+      if (!mainFilter1Active) {
+        checkMainFilter1();
+        uncheckMainFilter2();
+      } else {
+        uncheckMainFilter1();
+      }
+
+      setMainFiltersParams();
+      setSliderMaxMin(budgetSlider, 400000, 3000000);
+      filterHouses(activeFiltersList, filtersValueList);
+    });
+
+    $("#main_filter_1").hover(function () {
+      $('#main_filter_1').css("width", "100%");
+    }, function () {
+      if (!mainFilter1Active) {
+        $('#main_filter_1').css("width", "91%");
+      } else {
+        $('#main_filter_1').css("width", "100%");
+      }
+    });
+
+    //Main filter button 2 (compra)
+
+    function checkMainFilter2() {
+      mainFilter2Active = true;
+      mainFilter2Value = 1;
+      $('#main_filter_2').css("width", "100%");
+      $('#main_filter_2').css("background-color", "var(--main_color)");
+      $('#main_filter_2').css("color", "white");
+      $('#main_filter_button_title_2').css("left", "0%");
+      $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(0%)");
+      $('#main_filter_2').css("justify-content", "space-between");
+      $('#main_filter_2_button_icon').css("background-color", "white");
+      $('#main_filter_2_button_icon').css("color", "var(--main_color)");
+      $('#check_icon_2').css("display", "inline-block");
+    }
+
+    function uncheckMainFilter2() {
+      mainFilter2Active = false;
+      mainFilter2Value = 0;
+      $('#main_filter_2').css("width", "91%");
+      $('#main_filter_2').css("background-color", "transparent");
+      $('#main_filter_2').css("color", "var(--main_color)");
+      $('#main_filter_button_title_2').css("left", "50%");
+      $('#main_filter_button_title_2').css("transform", "perspective(1px) translateX(-50%)");
+      $('#main_filter_2_button_icon').css("background-color", "var(--main_color)");
+      $('#main_filter_2_button_icon').css("color", "var(--background_color)");
+      $('#check_icon_2').css("display", "none");
+    }
+
+    $("#main_filter_2").click(function () {
+      if (!mainFilter2Active) {
+        checkMainFilter2();
+        uncheckMainFilter1();
+      } else {
+        uncheckMainFilter2();
+      }
+
+      setMainFiltersParams();
+      setSliderMaxMin(budgetSlider, 95000000, 900000000);
+      filterHouses(activeFiltersList, filtersValueList);
+
+    });
+
+    $("#main_filter_2").hover(function () {
+      $('#main_filter_2').css("width", "100%");
+    }, function () {
+      if (!mainFilter2Active) {
+        $('#main_filter_2').css("width", "91%");
+      } else {
+        $('#main_filter_2').css("width", "100%");
+      }
+    });
 
 
   function loadEnd() {

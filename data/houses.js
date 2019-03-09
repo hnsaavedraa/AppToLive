@@ -21,8 +21,8 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
-    
+    details: ""
+
   },
   {
     owner: "Ashli T. Mendez",
@@ -46,7 +46,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -71,7 +71,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -96,7 +96,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -121,7 +121,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -146,7 +146,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -171,7 +171,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -196,7 +196,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -221,7 +221,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -246,7 +246,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -271,7 +271,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -296,7 +296,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -321,7 +321,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -346,7 +346,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -371,7 +371,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -396,7 +396,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -421,7 +421,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -446,7 +446,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -471,7 +471,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   },
   {
@@ -496,7 +496,7 @@ loadedHouses=[
     restaurants: "",
     pubs: "",
     parks: "",
-    details: "",
+    details: ""
     
   }
-]
+];
