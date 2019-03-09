@@ -18,7 +18,7 @@ function onGoogleMapResponse() {
 function fillMarkers(callback) {
 
   loadedHouses.forEach(function (house, i) {
-    markers[i] = new markerObject(house.coordinates, null, null, i);
+    markers[i] = new markerObject(house,house.coordinates, null, null, i);
   })
   createMarkers()
 }
@@ -37,7 +37,7 @@ function createMarkers() {
   })
 }
 
-function markerObject(location, infoHover, infoClick, i) {
+function markerObject(house,location, infoHover, infoClick, i) {
   var lat = parseFloat(location.substring(1, location.search(' ')));
   var lng = parseFloat(location.substring(location.search(',') + 2, location.search(']')));
   var ar = [lat, lng];
@@ -61,7 +61,7 @@ function markerObject(location, infoHover, infoClick, i) {
   }
   markerObject.infoWinHover = markerObject.marker.addListener('mouseover', function () {
     markerObject.marker.setAnimation(google.maps.Animation.BOUNCE);
-    console.log("hover hijoputas1");
+    console.log(house.address);
   });
   markerObject.infoWinOut = markerObject.marker.addListener('mouseout', function () {
     markerObject.marker.setAnimation(null);
@@ -69,6 +69,7 @@ function markerObject(location, infoHover, infoClick, i) {
   });
 
   markerObject.infoWinClick = markerObject.marker.addListener('click', function () {
+    displayInfoWindow(house);
     console.log("click hijoputas");
   });
   return markerObject;
@@ -104,7 +105,7 @@ $(window).resize(function () {
   displayInfoWindow();
 });
 
-function displayInfoWindow() {
+function displayInfoWindow(house) {
 
   if (currentInfoWindow != null) {
     currentInfoWindow.setMap(null);
@@ -214,9 +215,9 @@ function displayInfoWindow() {
     '<div class = "house_info_window_main_content" >' +
     '<div class = "house_info_window_title" style="padding-top:' + (($(window).height()) * 0.03).toString() + 'px;' +
     'padding-bottom:' + (($(window).height()) * 0.02).toString() + 'px;" >' +
-    '<h1>Venta</h1>' +
+    '<h1>'+house.adType+'</h1>' +
     '<div class = "price_container" >' +
-    '<h1>$300.000.000 COP</h1>' +
+    '<h1>'+'$'+house.price+' COP'+'</h1>' +
     '</div>' +
     '</div>' +
 
@@ -230,7 +231,7 @@ function displayInfoWindow() {
     '<div class = "house_info_window_list_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
     'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
     '<ul style="margin: 0px;">' +
-    '<li class = "house_info_window_data_text">Nombre del dueño</li>' +
+    '<li class = "house_info_window_data_text">'+'Propietario: '+house.owner+' </li>' +
     '<li class = "house_info_window_data_text">Contacto: 3508263720</li>' +
     '</ul>' +
     '</div>' +
@@ -246,15 +247,15 @@ function displayInfoWindow() {
     '</div>' +
     '<div class = "house_info_window_list_container" >' +
     '<ul style="margin: 0px;">' +
-    '<li class = "house_info_window_data_text">Direccion</li>' +
-    '<li class = "house_info_window_data_text">Barrio</li>' +
-    '<li class = "house_info_window_data_text">Estrato</li>' +
-    '<li class = "house_info_window_data_text">Area construida</li>' +
-    '<li class = "house_info_window_data_text">Numero de pisos</li>' +
-    '<li class = "house_info_window_data_text">Numero de habitaciones</li>' +
-    '<li class = "house_info_window_data_text">Numero de baños</li>' +
-    '<li class = "house_info_window_data_text">mascotas</li>' +
-    '<li class = "house_info_window_detail_text">Detalles adicionales</li>' +
+    '<li class = "house_info_window_data_text">Direccion: '+house.address+'</li>' +
+    '<li class = "house_info_window_data_text">Barrio: '+house.neighborhood.charAt(0).toUpperCase() + house.neighborhood.slice(1).toLowerCase()+'</li>' +
+    '<li class = "house_info_window_data_text">Estrato: '+house.estrato+'</li>' +
+    '<li class = "house_info_window_data_text">Area construida: '+house.buildingArea+'</li>' +
+    '<li class = "house_info_window_data_text">Numero de pisos: '+house.numberOfFloors+'</li>' +
+    '<li class = "house_info_window_data_text">Numero de habitaciones: '+house.numberOfRooms+'</li>' +
+    '<li class = "house_info_window_data_text">Numero de baños: '+house.numberOfBathrooms+'</li>' +
+    '<li class = "house_info_window_data_text">mascotas: '+house.pets+'</li>' +
+    '<li class = "house_info_window_detail_text">Detalles adicionales: </li>' +
     '</ul>' +
     '</div>' +
     '</div>' +
@@ -264,8 +265,8 @@ function displayInfoWindow() {
 
   var infowindow = new google.maps.InfoWindow({
     position: {
-      lat: 4.69971,
-      lng: -74.08175
+      lat: parseFloat(house.coordinates.substring(1, house.coordinates.search(' '))),
+      lng: parseFloat(house.coordinates.substring(house.coordinates.search(',') + 2, house.coordinates.search(']')))
     },
     content: contentString
   });
