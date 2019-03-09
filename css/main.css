@@ -1442,7 +1442,8 @@ p .bold {
   width: 100%;
   height: auto;
   background-color: var(--background_color);
-  padding: 42px 18px 18px 18px;
+  padding-left: 18px;
+  padding-right: 18px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -1544,7 +1545,8 @@ p .bold {
   width: 100%;
   height: auto;
   background-color: var(--background_color);
-  padding: 18px;
+  padding-left: 18px;
+  padding-right: 18px;
   display: flex;
   flex-direction: row;
 }
@@ -1557,7 +1559,8 @@ p .bold {
   width: 100%;
   height: auto;
   background-color: var(--background_color);
-  padding: 18px 18px 42px 18px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-radius: 0px 0px 10px 10px;
   display: flex;
   flex-direction: row;
@@ -1587,7 +1590,8 @@ p .bold {
 
 #house_info_window_buttons_container {
   height: auto;
-  padding: 21px 28px 21px 28px;
+  padding-left: 18px;
+  padding-right: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;

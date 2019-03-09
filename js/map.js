@@ -1,5 +1,6 @@
 var map;
 var markers = [];
+var currentInfoWindow = null;
 
 function onGoogleMapResponse() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -49,11 +50,13 @@ function markerObject(location, infoHover, infoClick, i) {
     marker: new google.maps.Marker({
       position: location,
       animation: google.maps.Animation.DROP,
-      icon:{url: 'https://imgur.com/uvvXGxB.png',
-            scaledSize: new google.maps.Size(35,50)}
+      icon: {
+        url: 'https://imgur.com/uvvXGxB.png',
+        scaledSize: new google.maps.Size(35, 50)
+      }
     }),
     infoWinHover: null,
-    infoWinOut:null,
+    infoWinOut: null,
     infoWinClick: null
   }
   markerObject.infoWinHover = markerObject.marker.addListener('mouseover', function () {
@@ -97,7 +100,16 @@ var caiListButtonActive = false;
 var listButtonsArrayStr = [];
 var listButtonsArray = [];
 
+$(window).resize(function () {
+  displayInfoWindow();
+});
+
 function displayInfoWindow() {
+
+  if (currentInfoWindow != null) {
+    currentInfoWindow.setMap(null);
+    currentInfoWindow = null;
+  }
 
   hospitalsListButtonActive = false;
   schoolsListButtonActive = false;
@@ -122,7 +134,8 @@ function displayInfoWindow() {
     '<div class="carousel-inner">' +
     '<div class="carousel-item active">' +
 
-    '<div id = "house_info_window_buttons_container">' +
+    '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
+      'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
 
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,1)" onmouseout="listButtonMouseOut(this,1)"' +
@@ -153,7 +166,9 @@ function displayInfoWindow() {
     '</div>' +
     '<div class="carousel-item">' +
 
-    '<div id = "house_info_window_buttons_container">' +
+    '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
+      'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
+
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,4)" onmouseout="listButtonMouseOut(this,4)"' +
     ' onclick="listButtonOnClick(this,4)">' +
@@ -197,7 +212,8 @@ function displayInfoWindow() {
     '<div class = "house_info_window_close_button_container" ></div>' +
     '<div class = "house_info_window">' +
     '<div class = "house_info_window_main_content" >' +
-    '<div class = "house_info_window_title" >' +
+    '<div class = "house_info_window_title" style="padding-top:' + (($(window).height()) * 0.045).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;" >' +
     '<h1>Venta</h1>' +
     '<div class = "price_container" >' +
     '<h1>$300.000.000 COP</h1>' +
@@ -211,7 +227,8 @@ function displayInfoWindow() {
     '</div>' +
     '<h4>Contacto</h4>' +
     '</div>' +
-    '<div class = "house_info_window_list_container" >' +
+    '<div class = "house_info_window_list_container" style="padding-top:' + (($(window).height()) * 0.025).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
     '<ul style="margin: 0px;">' +
     '<li class = "house_info_window_data_text">Nombre del dueño</li>' +
     '<li class = "house_info_window_data_text">Contacto: 3508263720</li>' +
@@ -219,7 +236,8 @@ function displayInfoWindow() {
     '</div>' +
     '</div>' +
 
-    '<div class = "house_info_window_house_info_container" >' +
+    '<div class = "house_info_window_house_info_container" style="padding-top:' + (($(window).height()) * 0.025).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.035).toString() + 'px;">' +
     '<div class = "house_info_window_icon_container" >' +
     '<div class = "house_info_window_icon" >' +
     '<i id="house_owner_icon" class="fas fa-home"></i>' +
@@ -252,8 +270,7 @@ function displayInfoWindow() {
     content: contentString
   });
 
-
-
+  currentInfoWindow = infowindow;
   infowindow.setZIndex(2000);
   infowindow.open(map);
 }
@@ -437,7 +454,7 @@ function listButtonOnClick(element, type) {
       if (listButtonsArray[1] != undefined) schoolsListButtonUncheck(listButtonsArray[1]);
       if (listButtonsArray[3] != undefined) pubsListButtonUncheck(listButtonsArray[3]);
       if (listButtonsArray[4] != undefined) parksListButtonUncheck(listButtonsArray[4]);
-      if (listButtonsArray[5] != undefined) caiListButtonUncheck(listButtonsArrayStr[5]);
+      if (listButtonsArray[5] != undefined) caiListButtonUncheck(listButtonsArray[5]);
     } else {
       restaurantsListButtonUncheck(element);
     }
