@@ -1763,6 +1763,7 @@ $(document).ready(function () {
 
   loadEnd();
   classifyData();
+  console.log(loadedHouses);
   /*getDataFromURL(URL1, function() {
     getDataFromURL(URL2, function() {
       getDataFromURL(URL3, function() {
