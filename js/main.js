@@ -1535,7 +1535,7 @@ $(document).ready(function () {
   });
 
 
-  // hospitals button 
+  // hospitals button
   var hospitalsButtonActive = false;
   var hospitalsSlider = document.getElementById("hospitals_slider");
 
@@ -1947,7 +1947,7 @@ $(document).ready(function () {
     filtersValueList[1] = mainFilter2Value;
   }
 
-  //Main filter button 1 (arriendo)  
+  //Main filter button 1 (arriendo)
   function checkMainFilter1() {
     mainFilter1Active = true;
     mainFilter1Value = 1;
