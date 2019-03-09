@@ -135,7 +135,7 @@ function displayInfoWindow() {
     '<div class="carousel-item active">' +
 
     '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
-      'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
+      'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
 
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,1)" onmouseout="listButtonMouseOut(this,1)"' +
@@ -167,7 +167,7 @@ function displayInfoWindow() {
     '<div class="carousel-item">' +
 
     '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
-      'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
+      'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
 
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,4)" onmouseout="listButtonMouseOut(this,4)"' +
@@ -212,8 +212,8 @@ function displayInfoWindow() {
     '<div class = "house_info_window_close_button_container" ></div>' +
     '<div class = "house_info_window">' +
     '<div class = "house_info_window_main_content" >' +
-    '<div class = "house_info_window_title" style="padding-top:' + (($(window).height()) * 0.045).toString() + 'px;' +
-    'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;" >' +
+    '<div class = "house_info_window_title" style="padding-top:' + (($(window).height()) * 0.03).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.02).toString() + 'px;" >' +
     '<h1>Venta</h1>' +
     '<div class = "price_container" >' +
     '<h1>$300.000.000 COP</h1>' +
@@ -227,8 +227,8 @@ function displayInfoWindow() {
     '</div>' +
     '<h4>Contacto</h4>' +
     '</div>' +
-    '<div class = "house_info_window_list_container" style="padding-top:' + (($(window).height()) * 0.025).toString() + 'px;' +
-    'padding-bottom:' + (($(window).height()) * 0.025).toString() + 'px;">' +
+    '<div class = "house_info_window_list_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
     '<ul style="margin: 0px;">' +
     '<li class = "house_info_window_data_text">Nombre del dueño</li>' +
     '<li class = "house_info_window_data_text">Contacto: 3508263720</li>' +
@@ -236,8 +236,8 @@ function displayInfoWindow() {
     '</div>' +
     '</div>' +
 
-    '<div class = "house_info_window_house_info_container" style="padding-top:' + (($(window).height()) * 0.025).toString() + 'px;' +
-    'padding-bottom:' + (($(window).height()) * 0.035).toString() + 'px;">' +
+    '<div class = "house_info_window_house_info_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
+    'padding-bottom:' + (($(window).height()) * 0.03).toString() + 'px;">' +
     '<div class = "house_info_window_icon_container" >' +
     '<div class = "house_info_window_icon" >' +
     '<i id="house_owner_icon" class="fas fa-home"></i>' +
