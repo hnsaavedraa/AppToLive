@@ -60,6 +60,15 @@ function markerObject(location, infoHover, infoClick, i) {
     markerObject.marker.setAnimation(google.maps.Animation.BOUNCE);
     console.log("hover hijoputas1");
   });
+  markerObject.infoWinOut = markerObject.marker.addListener('mouseout', function () {
+    markerObject.marker.setAnimation(null);
+    console.log("hover out hijoputas1");
+  });
+
+  markerObject.infoWinClick = markerObject.marker.addListener('click', function () {
+    console.log("click hijoputas");
+  });
+  return markerObject;
 
 }
 
@@ -477,15 +486,7 @@ function listButtonOnClick(element, type) {
 function displayInfoWindowHover() {
   console.log("mouse in");
 }
-markerObject.infoWinOut = markerObject.marker.addListener('mouseout', function () {
-  markerObject.marker.setAnimation(null);
-  console.log("hover out hijoputas1");
-});
 
-markerObject.infoWinClick = markerObject.marker.addListener('click', function () {
-  console.log("click hijoputas");
-});
-return markerObject;
 
 function hideInfoWindowHover() {
   console.log("mouse out");
