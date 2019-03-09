@@ -158,10 +158,11 @@ function loadPolygons(){
   }
   var polygon= new google.maps.Polygon({
     paths:locali.records[ind].fields.geometry.coordinates[0][0],
-    strokeWeight:0.5,
-    strokeColor:"blue",
-    fillColor:"#9C27B0",
-    fillOpacity:0.1,
+    strokeColor: "#03A9F4",
+    fillColor: "#03A9F4",
+    strokeOpacity: 0.8,
+    strokeWeight: 2.5,
+    fillOpacity: 0.35,
     map:map
   });
   }
@@ -483,11 +484,6 @@ function getDataFromURL(URL, callback) {
       console.error(error);
     });
 }
-
-Number.prototype.format = function (n, x) {
-  var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
-  return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
-};
 
 var safetyInfo = [];
 var safetyMidlow, safetyAvg;

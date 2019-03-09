@@ -1,6 +1,7 @@
 var map;
 var markers = [];
 var currentInfoWindow = null;
+var markerClicked = false;
 
 function onGoogleMapResponse() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -14,11 +15,15 @@ function onGoogleMapResponse() {
   createTestMarker();
 }
 
+Number.prototype.format = function (n, x) {
+  var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+  return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+};
 
 function fillMarkers(callback) {
 
   loadedHouses.forEach(function (house, i) {
-    markers[i] = new markerObject(house,house.coordinates, null, null, i);
+    markers[i] = new markerObject(house, house.coordinates, null, null, i);
   })
   createMarkers()
 }
@@ -37,7 +42,7 @@ function createMarkers() {
   })
 }
 
-function markerObject(house,location, infoHover, infoClick, i) {
+function markerObject(house, location, infoHover, infoClick, i) {
   var lat = parseFloat(location.substring(1, location.search(' ')));
   var lng = parseFloat(location.substring(location.search(',') + 2, location.search(']')));
   var ar = [lat, lng];
@@ -76,22 +81,6 @@ function markerObject(house,location, infoHover, infoClick, i) {
 
 }
 
-function createTestMarker() {
-  var marker = new google.maps.Marker({
-    map: map,
-    draggable: true,
-    animation: google.maps.Animation.DROP,
-    position: {
-      lat: 4.69971,
-      lng: -74.08175
-    }
-  });
-
-  marker.addListener('click', displayInfoWindow);
-  marker.addListener('mouseover', displayInfoWindowHover);
-  marker.addListener('mouseout', hideInfoWindowHover);
-}
-
 var hospitalsListButtonActive = false;
 var schoolsListButtonActive = false;
 var restaurantsListButtonActive = false;
@@ -102,10 +91,12 @@ var listButtonsArrayStr = [];
 var listButtonsArray = [];
 
 $(window).resize(function () {
-  displayInfoWindow();
+  if (!markerClicked) displayInfoWindow();
 });
 
 function displayInfoWindow(house) {
+
+  markerClicked = true;
 
   if (currentInfoWindow != null) {
     currentInfoWindow.setMap(null);
@@ -136,7 +127,7 @@ function displayInfoWindow(house) {
     '<div class="carousel-item active">' +
 
     '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
-      'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
+    'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
 
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,1)" onmouseout="listButtonMouseOut(this,1)"' +
@@ -168,7 +159,7 @@ function displayInfoWindow(house) {
     '<div class="carousel-item">' +
 
     '<div id = "house_info_window_buttons_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
-      'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
+    'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
 
     '<div class = "house_info_window_list_icon_container" >' +
     '<div class = "house_info_window_list_icon" onmouseover="listButtonMouseOver(this,4)" onmouseout="listButtonMouseOut(this,4)"' +
@@ -209,15 +200,43 @@ function displayInfoWindow(house) {
     '</div>' +
     '</div>';
 
+  var numberOfFloorsText = "";
+  if (house.numberOfFloors > 1) {
+    numberOfFloorsText = " pisos";
+  }else{
+    numberOfFloorsText = " piso";
+  }
+
+  var numberOfRoomsText = "";
+  if (house.numberOfRooms > 1) {
+    numberOfRoomsText = " habitaciones";
+  } else {
+    numberOfRoomsText = " habitacion";
+  }
+
+  var numberOfBathroomsText = "";
+  if (house.numberOfBathrooms > 1) {
+    numberOfBathroomsText = " baños";
+  } else {
+    numberOfBathroomsText = " baño";
+  }
+
+  var petsText = "";
+  if (house.pets == "Si") {
+    petsText = "Se admiten mascotas";
+  } else {
+    petsText = "No se admiten mascotas";
+  }
+
   var contentString =
     '<div class = "house_info_window_close_button_container" ></div>' +
     '<div class = "house_info_window">' +
     '<div class = "house_info_window_main_content" >' +
     '<div class = "house_info_window_title" style="padding-top:' + (($(window).height()) * 0.03).toString() + 'px;' +
     'padding-bottom:' + (($(window).height()) * 0.02).toString() + 'px;" >' +
-    '<h1>'+house.adType+'</h1>' +
+    '<h1>' + house.adType + '</h1>' +
     '<div class = "price_container" >' +
-    '<h1>'+'$'+house.price+' COP'+'</h1>' +
+    '<h1>' + '$' + Number(house.price).format(0) + ' COP' + '</h1>' +
     '</div>' +
     '</div>' +
 
@@ -231,8 +250,8 @@ function displayInfoWindow(house) {
     '<div class = "house_info_window_list_container" style="padding-top:' + (($(window).height()) * 0.015).toString() + 'px;' +
     'padding-bottom:' + (($(window).height()) * 0.015).toString() + 'px;">' +
     '<ul style="margin: 0px;">' +
-    '<li class = "house_info_window_data_text">'+'Propietario: '+house.owner+' </li>' +
-    '<li class = "house_info_window_data_text">Contacto: 3508263720</li>' +
+    '<li class = "house_info_window_data_text">' + '' + house.owner + ' </li>' +
+    '<li class = "house_info_window_data_text">Telefono: 3508263720</li>' +
     '</ul>' +
     '</div>' +
     '</div>' +
@@ -247,14 +266,14 @@ function displayInfoWindow(house) {
     '</div>' +
     '<div class = "house_info_window_list_container" >' +
     '<ul style="margin: 0px;">' +
-    '<li class = "house_info_window_data_text">Direccion: '+house.address+'</li>' +
-    '<li class = "house_info_window_data_text">Barrio: '+house.neighborhood.charAt(0).toUpperCase() + house.neighborhood.slice(1).toLowerCase()+'</li>' +
-    '<li class = "house_info_window_data_text">Estrato: '+house.estrato+'</li>' +
-    '<li class = "house_info_window_data_text">Area construida: '+house.buildingArea+'</li>' +
-    '<li class = "house_info_window_data_text">Numero de pisos: '+house.numberOfFloors+'</li>' +
-    '<li class = "house_info_window_data_text">Numero de habitaciones: '+house.numberOfRooms+'</li>' +
-    '<li class = "house_info_window_data_text">Numero de baños: '+house.numberOfBathrooms+'</li>' +
-    '<li class = "house_info_window_data_text">mascotas: '+house.pets+'</li>' +
+    '<li class = "house_info_window_data_text">' + house.address + '</li>' +
+    '<li class = "house_info_window_data_text">Barrio ' + house.neighborhood.charAt(0).toUpperCase() + house.neighborhood.slice(1).toLowerCase() + '</li>' +
+    '<li class = "house_info_window_data_text">Estrato ' + house.estrato + '</li>' +
+    '<li class = "house_info_window_data_text">Area construida de ' + house.buildingArea + ' m2</li>' +
+    '<li class = "house_info_window_data_text">' + house.numberOfFloors +  numberOfFloorsText + '</li>' +
+    '<li class = "house_info_window_data_text">' + house.numberOfRooms + numberOfRoomsText + '</li>' +
+    '<li class = "house_info_window_data_text">' + house.numberOfBathrooms + numberOfBathroomsText + '</li>' +
+    '<li class = "house_info_window_data_text">' + petsText + '</li>' +
     '<li class = "house_info_window_detail_text">Detalles adicionales: </li>' +
     '</ul>' +
     '</div>' +
@@ -269,6 +288,10 @@ function displayInfoWindow(house) {
       lng: parseFloat(house.coordinates.substring(house.coordinates.search(',') + 2, house.coordinates.search(']')))
     },
     content: contentString
+  });
+
+  infowindow.addListener('closeclick', function () {
+    markerClicked = false;
   });
 
   currentInfoWindow = infowindow;
