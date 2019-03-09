@@ -27,11 +27,16 @@ function fillMarkers(callback) {
   })
   createMarkers()
 }
-
+var cont=0;
 function createMarkers() {
+
   loadedHouses.forEach(function (house, i) {
     markers[i].marker.setMap(null);
   })
+  if(currentInfoWindow!=null){
+  currentInfoWindow.setMap(null);
+    currentInfoWindow = null;
+  }
 
   filteredHouses.forEach(function (house) {
     var index = loadedHouses.indexOf(house);
@@ -95,14 +100,17 @@ $(window).resize(function () {
 });
 
 function displayInfoWindow(house) {
-
+  var flag=true;
   markerClicked = true;
-
   if (currentInfoWindow != null) {
     currentInfoWindow.setMap(null);
     currentInfoWindow = null;
+    if(house == null){
+      flag=false;
+    }
   }
 
+if(flag){
   hospitalsListButtonActive = false;
   schoolsListButtonActive = false;
   restaurantsListButtonActive = false;
@@ -297,6 +305,7 @@ function displayInfoWindow(house) {
   currentInfoWindow = infowindow;
   infowindow.setZIndex(2000);
   infowindow.open(map);
+}
 }
 
 function listButtonMouseOver(element, type) {
