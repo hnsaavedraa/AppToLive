@@ -9,3 +9,7 @@ function onGoogleMapResponse() {
     }
   });
 }
+
+function createMarkers() {
+
+}
