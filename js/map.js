@@ -161,6 +161,13 @@ function displayInfoWindow(house) {
     }
   }
 
+  hospitalsUnCheck();
+  schoolsUnCheck();
+  restaurantsUnCheck();
+  pubsUnCheck();
+  parksUnCheck();
+  caisUnCheck();
+
   if (flag) {
     hospitalsListButtonActive = false;
     schoolsListButtonActive = false;
@@ -525,7 +532,7 @@ function listButtonOnClick(element, type, houseIndex) {
     });
 
     if (!hospitalsListButtonActive) {
-      if (listButtonsArray[0] == undefined) listButtonsArray[0] = element;
+      listButtonsArray[0] = element;
       hospitalsListButtonCheck(element);
       hospitalsCheck(filteredHouses[houseIndex]);
       schoolsUnCheck();
@@ -564,7 +571,7 @@ function listButtonOnClick(element, type, houseIndex) {
     });
 
     if (!schoolsListButtonActive) {
-      if (listButtonsArray[1] == undefined) listButtonsArray[1] = element;
+      listButtonsArray[1] = element;
       schoolsListButtonCheck(element);
       schoolsCheck(filteredHouses[houseIndex]);
       hospitalsUnCheck();
@@ -601,7 +608,7 @@ function listButtonOnClick(element, type, houseIndex) {
       $("#restaurants_list_button_close").css("background-color", "white");
     });
     if (!restaurantsListButtonActive) {
-      if (listButtonsArray[2] == undefined) listButtonsArray[2] = element;
+      listButtonsArray[2] = element;
       restaurantsListButtonCheck(element);
       restaurantsCheck(filteredHouses[houseIndex]);
       hospitalsUnCheck();
@@ -637,7 +644,7 @@ function listButtonOnClick(element, type, houseIndex) {
       $("#pubs_list_button_close").css("background-color", "white");
     });
     if (!pubsListButtonActive) {
-      if (listButtonsArray[3] == undefined) listButtonsArray[3] = element;
+      listButtonsArray[3] = element;
       pubsListButtonCheck(element);
       pubsListButtonCheck(element);
       pubsCheck(filteredHouses[houseIndex]);
@@ -674,7 +681,7 @@ function listButtonOnClick(element, type, houseIndex) {
     });
 
     if (!parksListButtonActive) {
-      if (listButtonsArray[4] == undefined) listButtonsArray[4] = element;
+      listButtonsArray[4] = element;
       parksListButtonCheck(element);
       console.log("in 5");
       parksCheck(filteredHouses[houseIndex]);
@@ -713,7 +720,7 @@ function listButtonOnClick(element, type, houseIndex) {
     });
 
     if (!caiListButtonActive) {
-      if (listButtonsArray[5] == undefined) listButtonsArray[5] = element;
+      listButtonsArray[5] = element;
       caiListButtonCheck(element);
       caisCheck(filteredHouses[houseIndex]);
       hospitalsUnCheck();
@@ -807,12 +814,12 @@ function getschoolsList(house) {
 
       '<div class="houses_list_data">' +
       '<h3 class="house_list_bold_text">Escolaridad: </h3>' +
-      '<h4 class="house_list_plain_text">' + school.levels.toLowerCase() + '</h4>' +
+      '<h4 class="house_list_plain_text">' + school.levels + '</h4>' +
       '</div>' +
 
       '<div class="houses_list_data">' +
       '<h3 class="house_list_bold_text">Jornada: </h3>' +
-      '<h4 class="house_list_plain_text">' + school.journal.toLowerCase() + '</h4>' +
+      '<h4 class="house_list_plain_text">' + school.journal+ '</h4>' +
       '</div>' +
 
       '<div class="divider_line"></div>' +
