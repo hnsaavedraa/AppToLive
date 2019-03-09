@@ -616,7 +616,7 @@ p .bold {
   margin-bottom: 24px;
 }
 
-.filters_background{
+.filters_background {
   position: absolute;
   z-index: 4;
   width: 100%;
@@ -624,7 +624,7 @@ p .bold {
   margin: 0px;
 }
 
-.filters_background_image{
+.filters_background_image {
   position: absolute;
   z-index: 5;
   object-position: center;
@@ -633,7 +633,7 @@ p .bold {
   height: 100%;
 }
 
-.filters_background_overlay{
+.filters_background_overlay {
   position: absolute;
   z-index: 6;
   width: 100%;
@@ -663,7 +663,7 @@ p .bold {
   color: white !important;
 }
 
-.slider_container{
+.slider_container {
   width: 100%;
   height: auto;
   padding-top: 0px;
@@ -752,7 +752,7 @@ p .bold {
   text-align: center;
 }
 
-.filters_icon_container{
+.filters_icon_container {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -826,7 +826,7 @@ p .bold {
   font-weight: bold;
 }
 
-.house_type_buttons_container{
+.house_type_buttons_container {
   width: 100%;
   height: auto;
   margin-top: 6px;
@@ -1374,11 +1374,178 @@ p .bold {
 }
 
 .checkbox_1:checked~.left_panel_2,
-.checkbox_2:checked~.left_panel_1{
+.checkbox_2:checked~.left_panel_1 {
   left: -43%;
 }
 
 .checkbox_1,
 .checkbox_2 {
   display: none;
+}
+
+.gm-style .gm-style-iw-c {
+  max-width: auto !important;
+  max-height: auto !important;
+  padding: 0px !important;
+  overflow: hidden !important;
+}
+
+.gm-style-iw-d {
+  max-width: auto !important;
+  max-height: auto !important;
+  padding: 0px !important;
+  overflow: hidden !important;
+}
+
+.gm-style .gm-style-iw-t::after {
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 11px solid var(--secondary_color) !important;
+}
+
+.house_info_window_close_button_container {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background-color: var(--secondary_color);
+  border-radius: 50%;
+  top: 2px;
+  right: 2px;
+}
+
+.house_info_window {
+  width: auto;
+  height: auto;
+  font-family: 'product-sans';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: var(--secondary_color);
+  color: white;
+}
+
+.house_info_window_main_content {
+  width: 100%;
+  height: auto;
+  background-color: var(--background_color);
+  border-radius: 0px 0px 10px 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.house_info_window_title {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.house_info_window_title h1 {
+  width: 100%;
+  font-size: 2.15rem;
+  text-align: center;
+  color: white;
+  margin: 0px;
+  font-weight: bold;
+}
+
+.price_container {
+  width: auto;
+  height: auto;
+  margin-top: 6px;
+  border-radius: 50px;
+  padding: 8px 16px 8px 16px;
+  background-color: var(--secondary_color);
+  color: white;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.price_container h1 {
+  font-size: 1rem;
+  margin: 0px;
+}
+
+.house_info_window_divider {
+  width: 100%;
+  height: 8px;
+  background-color: var(--secondary_color);
+}
+
+.house_info_window_owner_info_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.house_info_window_icon_container {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.house_info_window_icon_container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--secondary_color);
+  color: var(--background_color);
+  margin-bottom: 8px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.house_info_window_icon_container h4 {
+  color: var(--secondary_color);
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: center;
+}
+
+#house_owner_icon {
+  font-size: 30px;
+}
+
+#Carrousel {
+  width: 100%;
+  height: 100%;
+}
+
+#carouselInfo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#containerCarrousel {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color: transparent;
+}
+
+#itemc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

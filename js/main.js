@@ -2138,7 +2138,7 @@ $(document).ready(function () {
     console.log("CAIS");
     console.log(caiInfo);
     console.log("midlow: " + caiMidlow + ", avg: " + caiAvg);
-  }, 5000);
+  }, 2000);
 
   classifyData();
 
