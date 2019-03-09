@@ -1637,3 +1637,426 @@ p .bold {
 #house_info_window_buttons_container i{
   font-size: 24px;
 }
+
+.houses_list_data_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+.houses_list_data {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.house_list_info_link {
+  width: 100%;
+  font-weight: 600;
+  color: var(--secondary_color);
+  font-size: 1rem;
+  text-align: left;
+  margin: 0;
+}
+
+.house_list_info_link:hover {
+  color: #9CCC65;
+  text-decoration: 2px underline #AED581;
+}
+
+.house_list_info_linko:active {
+  color: #9CCC65;
+  text-decoration: 2px underline #AED581;
+}
+
+.house_list_bold_text {
+  font-family: 'product-sans';
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-right: 8px;
+}
+
+.house_list_plain_text {
+  font-family: 'product-sans';
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.divider_line {
+  width: 100%;
+  height: 2px;
+  border-radius: 16px;
+  background-color: #BDBDBD;
+  margin-top: 18px;
+  margin-bottom: 14px;
+}
+
+.hospitals_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 2;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hospitals_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.hospitals_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#hospitals_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.hospitals_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
+
+.schools_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 3;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.schools_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.schools_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#schools_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.schools_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
+
+.restaurants_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 4;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.restaurants_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.restaurants_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#restaurants_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.restaurants_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
+
+.pubs_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 5;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.pubs_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.pubs_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#pubs_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.pubs_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
+
+.parks_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 6;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.parks_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.parks_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#parks_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.parks_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
+
+.cais_list_container {
+  width: 20%;
+  max-height: 60%;
+  left: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 7;
+  overflow-y: scroll;
+  border-radius: 14px;
+  margin-top: 103px;
+  background-color: white;
+  color: black;
+  transition: left 0.40s;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.cais_list_title_container {
+  box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  padding: 16px;
+  font-family: "product-sans";
+  position: fixed;
+  top: 0;
+  width: 20%;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 103px;
+}
+
+.cais_list_title_txt {
+  font-size: 1.45rem;
+  margin-bottom: 1px;
+}
+
+#cais_list_button_close {
+  padding: 9px 11px 9px 11px;
+  font-size: 1.05rem;
+  top: 0;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition-property: background-color, color, opacity;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+}
+
+.cais_list_txt_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 100px 16px 16px 16px;
+}
