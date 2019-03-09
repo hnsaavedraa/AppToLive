@@ -1,4 +1,4 @@
-[{
+var loadedHouses=[{
   owner: "Esther J. Espino",
   phone: "758 744 381",
   homeType: "Casa",
