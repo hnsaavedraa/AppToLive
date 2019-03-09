@@ -616,6 +616,10 @@ function filterHouses(activeFiltersList, filtersValueList) {
     loadedHouses.forEach(function (house, i) {
       markers[i].marker.setMap(null);
     })
+    if(currentInfoWindow!=null){
+      currentInfoWindow.setMap(null);
+        currentInfoWindow = null;
+      }
   }
 
 
