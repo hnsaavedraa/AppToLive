@@ -301,7 +301,7 @@ var policeStationsData=[
   location: [4.576621000959278, -74.13046700135038]
 }, {
   name: "CAI MIRADOR",
-  phone: "0",
+  phone: "7546780",
   location: [4.591645201865389, -74.06441150118917]
 }, {
   name: "CAI VILLA CalleAUDIA",
@@ -793,7 +793,7 @@ var policeStationsData=[
   name: "CAI VILLA LUZ",
   neighborhood: "EL ENCANTO",
   address: "Carrera 77A  64B-00",
-  phone: "0",
+  phone: "4204363",
   location: [4.68128900108735, -74.10736100060905]
 }, {
   name: "CAI BELLO HORIZONTE",

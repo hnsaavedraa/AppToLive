@@ -5,7 +5,7 @@ var loadedHouses=[{
   adType: "Arriendo",
   floor: "1",
   estrato: "4",
-  price: "450000",
+  price: "650000",
   neighborhood: "POLO CLUB",
   address: "Cl. 87 #22-63 a 22-1, Bogotá",
   coordinates: "4.675327, -74.061350",
