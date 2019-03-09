@@ -19,6 +19,8 @@ var URL5 = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?da
   "+OR+(%23exact(desc_cod_c%2C%22EXPENDIO+DE+BEBIDAS+ALCOHOLICAS+PARA+EL+CONSUMO+DENTRO+DEL+ESTABLECIMIENTO%22)))&rows=10000&sort=-objectid";
 
 
+var LOCA="https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=poligonos-localidades&rows=36&facet=Nombre+de+la+localidad";
+
 var BARRIOS = "https://bogota-laburbano.opendatasoft.com/api/records/1.0/search/?dataset=barrios_prueba&rows=3871"
 
 var SEGURIDAD = "https://www.datos.gov.co/resource/enju-8jvx.json"
@@ -49,81 +51,20 @@ var policeStations = [];
 
 var homicides = [];
 
-/*estructuras*/
-// var neighborhood={
-//   name: barriocomu,
-//   coordinate: geo_point_2d,
-//   polygons: geo_shape,
-//   crimesCount: 0
-// }
+var locali=[];
 
-// var hospital={
-//   name:properties.f2,
-//   address:properties.f3,
-//   location:geometry.coordinates
-// }
-
-// var cai={
-//   name: fields.cainombre,
-//   neighborhood: fields.caibarrio,
-//   address: fields.caidirecci,
-//   phone: fields.caitelefon,
-//   location: fields.geo_point_2d
-// }
-
-// var school={
-//   name: nombreestablecimiento,
-//   address: direccion,
-//   phone: telefono,
-//   levels: niveles,
-//   journal: jornada,
-//   location: mauroFuncion(address)
-// }
-
-// var house={
-//   owner: nombre,
-//   phone: phone,
-//   floor: piso,
-//   estrato: estrato,
-//   price: precio,
-//   homeType: apartamento_casa_habitacion,
-//   adType: arroVent,
-//   neighborhood:barrio,
-//   address: direccion,
-//   numberOfRooms: rooms,
-//   numberOfBathrooms: bathrooms,
-//   numberOfFloors: nf,
-//   buildingArea: area,
-//   pets: booleanP,
-//   hospitals: [].length,
-//   cais:[].length,
-//   schools:[].length,
-//   restaurants:[].length,
-//   pubs:[].length,
-//   parks: [].length,
-//   details: unString
-
-// }
-
-// var park={
-//   name:"",
-//   multipoly:[],
-//   center:[]
-// }
 
 function viewData(URL, text, callback) {
   var data = $.get(URL, function () {})
     .done(function () {
       if (text == "BARRIOS") {
-        /* data.responseJSON.records.forEach(function(element){
-           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
-         })
-         */
         console.log(data.responseJSON.records);
         neighborhoods = data.responseJSON.records;
       } else if (text == "ZONASVERDES") {
         greenAreas = data.responseJSON.records;
-      } else if (text == "CAI") {
+      }else if(text=="LOCA"){
+        locali=data.responseJSON; 
+      }else if (text == "CAI") {
         policeStations = data.responseJSON.records;
       } else if (text == "HOMICIDIOS") {
         homicides = data.responseJSON.records;
@@ -135,12 +76,37 @@ function viewData(URL, text, callback) {
         hospitals = data.responseJSON.features;
       }
 
-      callback();
+      loadPolygons();
     })
     .fail(function (error) {
       console.error(error);
     })
 }
+
+function loadPolygons(){
+  
+  var ind=0;
+  locali.records.forEach(function (){
+  if(locali.records[ind].fields.geometry.type == "MultiPolygon"){
+  for(var j=0; j<locali.records[ind].fields.geometry.coordinates[0][0].length; j++){
+  locali.records[ind].fields.geometry.coordinates[0][0][j] = {lat:locali.records[ind].fields.geometry.coordinates[0][0][j][1], lng:locali.records[ind].fields.geometry.coordinates[0][0][j][0] }
+  }
+  var polygon= new google.maps.Polygon({
+    paths:locali.records[ind].fields.geometry.coordinates[0][0],
+    strokeColor: "#03A9F4",
+    fillColor: "#03A9F4",
+    strokeOpacity: 0.8,
+    strokeWeight: 2.5,
+    fillOpacity: 0.35,
+    map:map
+  });
+  }
+  ind++;
+  });
+
+
+}
+
 
 function getDataFromURL(URL, callback) {
   var data = $.get(URL, function () {})
@@ -347,10 +313,6 @@ function viewData(URL, text, callback) {
   var data = $.get(URL, function () {})
     .done(function () {
       if (text == "BARRIOS") {
-        /* data.responseJSON.records.forEach(function(element){
-           neighborhoods.push(Constructor_neighborhoods(element.lamierda, element.laotrameirda));
-         })
-         */
         console.log(data.responseJSON.records);
         //neighborhoods.push(constructor del element())
         neighborhoods = data.responseJSON.records;
@@ -366,7 +328,9 @@ function viewData(URL, text, callback) {
             location: element.fields.geo_point_2d
           })
         })
-      } else if (text == "HOMICIDIOS") {
+      } else if(text=="LOCA"){
+        locali=data.responseJSON; 
+      }else if (text == "HOMICIDIOS") {
         homicides = data.responseJSON.records;
       } else if (text == "SEGURIDAD") {
         security = data.responseJSON;
@@ -380,12 +344,12 @@ function viewData(URL, text, callback) {
             location: element.geometry.coordinates
           })
           console.log(hospitalsData);
-
         })
 
       }
 
-      callback();
+ 
+      loadPolygons();
     })
     .fail(function (error) {
       console.error(error);
@@ -451,11 +415,6 @@ function getDataFromURL(URL, callback) {
       console.error(error);
     });
 }
-
-Number.prototype.format = function (n, x) {
-  var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
-  return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
-};
 
 var safetyInfo = [];
 var safetyMidlow, safetyAvg;
@@ -579,6 +538,24 @@ function filterHouses(activeFiltersList, filtersValueList) {
   loadedHouses.forEach(function (house) {
     filteredHouses.push(house);
   });
+
+  if(!activeFiltersList[0] && !activeFiltersList[1] ){
+    loadedHouses.forEach(function (house, i) {
+      markers[i].marker.setMap(null);
+
+      hospitalsUnCheck();
+      schoolsUnCheck();
+      restaurantsUnCheck();
+      pubsUnCheck();
+      parksUnCheck();
+      caisUnCheck();
+    })
+    if(currentInfoWindow!=null){
+      currentInfoWindow.setMap(null);
+        currentInfoWindow = null;
+      }
+  }
+
 
   for (var i = 0; i < 15; i++) {
 
@@ -888,9 +865,6 @@ $(document).ready(function () {
   }
 
   function unCheck2() {
-
-    hideMainGraphs();
-
     $("#check_2").prop('checked', false);
     $(".left_panel_1").css("left", "-43%");
     $(".left_panel_2").css("left", "-43%");
@@ -1979,11 +1953,9 @@ $(document).ready(function () {
     if (!mainFilter1Active) {
       checkMainFilter1();
       uncheckMainFilter2();
-      setMainFiltersParams();
       setSliderMaxMin(budgetSlider, 400000, 3000000);
       setSliderValue(budgetSlider, 3000000);
       setSliderTxt(budgetSliderOutput, 3000000);
-      filterHouses(activeFiltersList, filtersValueList);
 
     } else {
       uncheckMainFilter1();
@@ -1994,6 +1966,8 @@ $(document).ready(function () {
       }
 
     }
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#main_filter_1").hover(function () {
@@ -2039,12 +2013,9 @@ $(document).ready(function () {
     if (!mainFilter2Active) {
       checkMainFilter2();
       uncheckMainFilter1();
-      setMainFiltersParams();
       setSliderMaxMin(budgetSlider, 95000000, 900000000);
       setSliderValue(budgetSlider, 900000000);
       setSliderTxt(budgetSliderOutput, 900000000);
-      filterHouses(activeFiltersList, filtersValueList);
-
     } else {
       uncheckMainFilter2();
       if (!mainFilter1Active) {
@@ -2054,6 +2025,8 @@ $(document).ready(function () {
       }
 
     }
+    setMainFiltersParams();
+    filterHouses(activeFiltersList, filtersValueList);    
   });
 
   $("#main_filter_2").hover(function () {
@@ -2096,9 +2069,6 @@ $(document).ready(function () {
         } else if ($("#check_2")[0].checked) {
           $(".info_container").css("left", "5%");
 
-        } else if ($("#check_3")[0].checked) {
-          $(".info_container").css("left", "5%");
-
         } else {
           $(".info_container").css("left", "-16%");
 
@@ -2138,9 +2108,11 @@ $(document).ready(function () {
     console.log("CAIS");
     console.log(caiInfo);
     console.log("midlow: " + caiMidlow + ", avg: " + caiAvg);
-  }, 5000);
+  }, 2000);
 
   classifyData();
+  viewData(LOCA,"LOCA", function(){
+  })
 
   /*getDataFromURL(URL1, function() {
     getDataFromURL(URL2, function() {
