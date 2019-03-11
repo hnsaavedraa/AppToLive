@@ -63,7 +63,7 @@ function viewData(URL, text, callback) {
       } else if (text == "ZONASVERDES") {
         greenAreas = data.responseJSON.records;
       }else if(text=="LOCA"){
-        locali=data.responseJSON; 
+        locali=data.responseJSON;
       }else if (text == "CAI") {
         policeStations = data.responseJSON.records;
       } else if (text == "HOMICIDIOS") {
@@ -84,7 +84,7 @@ function viewData(URL, text, callback) {
 }
 
 function loadPolygons(){
-  
+
   var ind=0;
   locali.records.forEach(function (){
   if(locali.records[ind].fields.geometry.type == "MultiPolygon"){
@@ -329,7 +329,7 @@ function viewData(URL, text, callback) {
           })
         })
       } else if(text=="LOCA"){
-        locali=data.responseJSON; 
+        locali=data.responseJSON;
       }else if (text == "HOMICIDIOS") {
         homicides = data.responseJSON.records;
       } else if (text == "SEGURIDAD") {
@@ -348,7 +348,7 @@ function viewData(URL, text, callback) {
 
       }
 
- 
+
       loadPolygons();
     })
     .fail(function (error) {
@@ -2026,7 +2026,7 @@ $(document).ready(function () {
 
     }
     setMainFiltersParams();
-    filterHouses(activeFiltersList, filtersValueList);    
+    filterHouses(activeFiltersList, filtersValueList);
   });
 
   $("#main_filter_2").hover(function () {
