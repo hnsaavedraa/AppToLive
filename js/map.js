@@ -516,19 +516,19 @@ function caiListButtonUncheck(element) {
 function listButtonOnClick(element, type, houseIndex) {
   if (type == 1) {
     $("#hospitals_list_button_close").click(function () {
-      $("#hospitals_list_button_close").css("color", "black");
       $("#hospitals_list_button_close").css("background-color", "white");
+      $("#hospitals_list_button_close").css("color", "var(--background_color)");
       $(".hospitals_list_container").css("left", "102%");
       $("#hospitals_list_button_close").css("opacity", "0");
       hospitalsListButtonUncheck(element);
     });
 
     $("#hospitals_list_button_close").hover(function () {
-      $("#hospitals_list_button_close").css("color", "white");
-      $("#hospitals_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#hospitals_list_button_close").css("color", "black");
       $("#hospitals_list_button_close").css("background-color", "white");
+      $("#hospitals_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#hospitals_list_button_close").css("background-color", "var(--background_color)");
+      $("#hospitals_list_button_close").css("color", "white");
     });
 
     if (!hospitalsListButtonActive) {
@@ -555,19 +555,19 @@ function listButtonOnClick(element, type, houseIndex) {
   } else if (type == 2) {
 
     $("#schools_list_button_close").click(function () {
-      $("#schools_list_button_close").css("color", "black");
       $("#schools_list_button_close").css("background-color", "white");
+      $("#schools_list_button_close").css("color", "var(--background_color)");
       $(".schools_list_container").css("left", "102%");
       $("#schools_list_button_close").css("opacity", "0");
       schoolsListButtonUncheck(element);
     });
 
     $("#schools_list_button_close").hover(function () {
-      $("#schools_list_button_close").css("color", "white");
-      $("#schools_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#schools_list_button_close").css("color", "black");
       $("#schools_list_button_close").css("background-color", "white");
+      $("#schools_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#schools_list_button_close").css("background-color", "var(--background_color)");
+      $("#schools_list_button_close").css("color", "white");
     });
 
     if (!schoolsListButtonActive) {
@@ -593,19 +593,19 @@ function listButtonOnClick(element, type, houseIndex) {
 
   } else if (type == 3) {
     $("#restaurants_list_button_close").click(function () {
-      $("#restaurants_list_button_close").css("color", "black");
       $("#restaurants_list_button_close").css("background-color", "white");
+      $("#restaurants_list_button_close").css("color", "var(--background_color)");
       $(".restaurants_list_container").css("left", "102%");
       $("#restaurants_list_button_close").css("opacity", "0");
       restaurantsListButtonUncheck(element);
     });
 
     $("#restaurants_list_button_close").hover(function () {
-      $("#restaurants_list_button_close").css("color", "white");
-      $("#restaurants_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#restaurants_list_button_close").css("color", "black");
       $("#restaurants_list_button_close").css("background-color", "white");
+      $("#restaurants_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#restaurants_list_button_close").css("background-color", "var(--background_color)");
+      $("#restaurants_list_button_close").css("color", "white");
     });
     if (!restaurantsListButtonActive) {
       listButtonsArray[2] = element;
@@ -629,19 +629,19 @@ function listButtonOnClick(element, type, houseIndex) {
 
   } else if (type == 4) {
     $("#pubs_list_button_close").click(function () {
-      $("#pubs_list_button_close").css("color", "black");
       $("#pubs_list_button_close").css("background-color", "white");
+      $("#pubs_list_button_close").css("color", "var(--background_color)");
       $(".pubs_list_container").css("left", "102%");
       $("#pubs_list_button_close").css("opacity", "0");
       pubsListButtonUncheck(element);
     });
 
     $("#pubs_list_button_close").hover(function () {
-      $("#pubs_list_button_close").css("color", "white");
-      $("#pubs_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#pubs_list_button_close").css("color", "black");
       $("#pubs_list_button_close").css("background-color", "white");
+      $("#pubs_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#pubs_list_button_close").css("background-color", "var(--background_color)");
+      $("#pubs_list_button_close").css("color", "white");
     });
     if (!pubsListButtonActive) {
       listButtonsArray[3] = element;
@@ -665,19 +665,19 @@ function listButtonOnClick(element, type, houseIndex) {
     }
   } else if (type == 5) {
     $("#parks_list_button_close").click(function () {
-      $("#parks_list_button_close").css("color", "black");
       $("#parks_list_button_close").css("background-color", "white");
+      $("#parks_list_button_close").css("color", "var(--background_color)");
       $(".parks_list_container").css("left", "102%");
       $("#parks_list_button_close").css("opacity", "0");
       parksListButtonUncheck(element);
     });
 
     $("#parks_list_button_close").hover(function () {
-      $("#parks_list_button_close").css("color", "white");
-      $("#parks_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#parks_list_button_close").css("color", "black");
       $("#parks_list_button_close").css("background-color", "white");
+      $("#parks_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#parks_list_button_close").css("background-color", "var(--background_color)");
+      $("#parks_list_button_close").css("color", "white");
     });
 
     if (!parksListButtonActive) {
@@ -704,19 +704,19 @@ function listButtonOnClick(element, type, houseIndex) {
   } else if (type == 6) {
 
     $("#cais_list_button_close").click(function () {
-      $("#cais_list_button_close").css("color", "black");
       $("#cais_list_button_close").css("background-color", "white");
+      $("#cais_list_button_close").css("color", "var(--background_color)");
       $(".cais_list_container").css("left", "102%");
       $("#cais_list_button_close").css("opacity", "0");
       caiListButtonUncheck(element);
     });
 
     $("#cais_list_button_close").hover(function () {
-      $("#cais_list_button_close").css("color", "white");
-      $("#cais_list_button_close").css("background-color", "black");
-    }, function () {
-      $("#cais_list_button_close").css("color", "black");
       $("#cais_list_button_close").css("background-color", "white");
+      $("#cais_list_button_close").css("color", "var(--background_color)");
+    }, function () {
+      $("#cais_list_button_close").css("background-color", "var(--background_color)");
+      $("#cais_list_button_close").css("color", "white");
     });
 
     if (!caiListButtonActive) {
@@ -767,8 +767,6 @@ function gethospitalsList(house) {
 }
 
 function hospitalsCheck(house) {
-  $("#hospitals_list_button_close").css("color", "black");
-  $("#hospitals_list_button_close").css("background-color", "white");
   $(".hospitals_list_container").css("left", "79%");
   $("#hospitals_list_button_close").css("opacity", "1");
 
@@ -779,8 +777,6 @@ function hospitalsCheck(house) {
 }
 
 function hospitalsUnCheck() {
-  $("#hospitals_list_button_close").css("color", "white");
-  $("#hospitals_list_button_close").css("background-color", "black");
   $(".hospitals_list_container").css("left", "102%");
   $("#hospitals_list_button_close").css("opacity", "0");
 }
@@ -830,9 +826,7 @@ function getschoolsList(house) {
   return content;
 }
 
-function schoolsCheck(house) {
-  $("#schools_list_button_close").css("color", "black");
-  $("#schools_list_button_close").css("background-color", "white");
+function schoolsCheck(house){
   $(".schools_list_container").css("left", "79%");
   $("#schools_list_button_close").css("opacity", "1");
 
@@ -843,8 +837,6 @@ function schoolsCheck(house) {
 }
 
 function schoolsUnCheck() {
-  $("#schools_list_button_close").css("color", "white");
-  $("#schools_list_button_close").css("background-color", "black");
   $(".schools_list_container").css("left", "102%");
   $("#schools_list_button_close").css("opacity", "0");
 }
@@ -882,8 +874,6 @@ function getcaisList(house) {
 }
 
 function caisCheck(house) {
-  $("#cais_list_button_close").css("color", "black");
-  $("#cais_list_button_close").css("background-color", "white");
   $(".cais_list_container").css("left", "79%");
   $("#cais_list_button_close").css("opacity", "1");
 
@@ -894,8 +884,6 @@ function caisCheck(house) {
 }
 
 function caisUnCheck() {
-  $("#cais_list_button_close").css("color", "white");
-  $("#cais_list_button_close").css("background-color", "black");
   $(".cais_list_container").css("left", "102%");
   $("#cais_list_button_close").css("opacity", "0");
 }
@@ -929,8 +917,6 @@ function getrestaurantsList(house) {
 }
 
 function restaurantsCheck(house) {
-  $("#restaurants_list_button_close").css("color", "black");
-  $("#restaurants_list_button_close").css("background-color", "white");
   $(".restaurants_list_container").css("left", "79%");
   $("#restaurants_list_button_close").css("opacity", "1");
 
@@ -941,8 +927,6 @@ function restaurantsCheck(house) {
 }
 
 function restaurantsUnCheck() {
-  $("#restaurants_list_button_close").css("color", "white");
-  $("#restaurants_list_button_close").css("background-color", "black");
   $(".restaurants_list_container").css("left", "102%");
   $("#restaurants_list_button_close").css("opacity", "0");
 }
@@ -972,8 +956,6 @@ function getparksList(house) {
 }
 
 function parksCheck(house) {
-  $("#parks_list_button_close").css("color", "black");
-  $("#parks_list_button_close").css("background-color", "white");
   $(".parks_list_container").css("left", "79%");
   $("#parks_list_button_close").css("opacity", "1");
 
@@ -984,8 +966,6 @@ function parksCheck(house) {
 }
 
 function parksUnCheck() {
-  $("#parks_list_button_close").css("color", "white");
-  $("#parks_list_button_close").css("background-color", "black");
   $(".parks_list_container").css("left", "102%");
   $("#parks_list_button_close").css("opacity", "0");
 }
@@ -1018,8 +998,6 @@ function getpubsList(house) {
 }
 
 function pubsCheck(house) {
-  $("#pubs_list_button_close").css("color", "black");
-  $("#pubs_list_button_close").css("background-color", "white");
   $(".pubs_list_container").css("left", "79%");
   $("#pubs_list_button_close").css("opacity", "1");
 
@@ -1030,8 +1008,6 @@ function pubsCheck(house) {
 }
 
 function pubsUnCheck() {
-  $("#pubs_list_button_close").css("color", "white");
-  $("#pubs_list_button_close").css("background-color", "black");
   $(".pubs_list_container").css("left", "102%");
   $("#pubs_list_button_close").css("opacity", "0");
 }

@@ -1705,15 +1705,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .hospitals_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -1738,9 +1738,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
@@ -1766,15 +1766,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .schools_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -1799,9 +1799,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
@@ -1827,15 +1827,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .restaurants_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -1860,9 +1860,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
@@ -1888,15 +1888,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .pubs_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -1921,9 +1921,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
@@ -1949,15 +1949,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .parks_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -1982,9 +1982,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
@@ -2010,15 +2010,15 @@ p .bold {
   overflow-y: scroll;
   border-radius: 14px;
   margin-top: 103px;
-  background-color: white;
-  color: black;
+  background-color: var(--background_color);
+  color: white;
   transition: left 0.40s;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .cais_list_title_container {
   box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.3);
-  background-color: white;
+  background-color: var(--background_color);
   padding: 16px;
   font-family: "product-sans";
   position: fixed;
@@ -2043,9 +2043,9 @@ p .bold {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: black;
-  background-color: white;
-  color: black;
+  border-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   transition-property: background-color, color, opacity;
   transition-duration: 0.15s, 0.15s, 0.15s;
